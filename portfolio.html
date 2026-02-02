@@ -1,0 +1,2361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - ARTI Betul</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8b7355;
+            --secondary: #c4a882;
+            --accent: #d4a574;
+            --light: #f5f0e8;
+            --dark: #6b5d52;
+            --text: #5d4e3f;
+            --text-light: #9b8b7a;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #e8dcc8 0%, #d4c4b0 100%);
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            z-index: 1000;
+            padding: 1.2rem 0;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 100px 0 80px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        section:nth-child(2) { animation-delay: 0.1s; }
+        section:nth-child(3) { animation-delay: 0.2s; }
+        section:nth-child(4) { animation-delay: 0.3s; }
+
+        /* Hero Section */
+        #accueil {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(245, 240, 232, 0.8) 0%, rgba(248, 243, 236, 0.6) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #accueil::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 196, 176, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            color: var(--primary);
+        }
+
+        .hero-text .highlight {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(212, 196, 176, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 196, 176, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .photo-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 2;
+        }
+
+        .photo-container::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 20px;
+            z-index: 1;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Compétences Section */
+        #competences {
+            background: var(--light);
+        }
+
+        .competences-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .competences-grid-bottom {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .competence-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .competence-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .competence-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .competence-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(212, 196, 176, 0.2);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Études & Diplômes */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--secondary), var(--accent));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            grid-column: 2;
+        }
+
+        .timeline-item:nth-child(even) .timeline-empty {
+            grid-column: 1;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: white;
+            border: 4px solid var(--secondary);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-year {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h4 {
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-content ul {
+            margin-top: 0.8rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-content li {
+            color: var(--text-light);
+            margin-bottom: 0.4rem;
+        }
+
+        /* Diplômes Section */
+        .diplomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .diplome-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-top: 4px solid var(--secondary);
+        }
+
+        .diplome-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            border-top-color: var(--accent);
+        }
+
+        .diplome-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .diplome-content h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        .diplome-etablissement {
+            color: var(--secondary);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .diplome-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .diplome-description {
+            color: var(--text-light);
+            text-align: center;
+            line-height: 1.6;
+        }
+		
+		/* Cartes avec effet Flip au CLIC */
+.diplome-card-flip {
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.diplome-card-inner {
+    position: relative;
+    width: 100%;
+    min-height: 350px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+/* État retourné au clic (via JavaScript) */
+.diplome-card-flip.flipped .diplome-card-inner {
+    transform: rotateY(180deg);
+}
+
+.diplome-card-front,
+.diplome-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    padding: 2rem;
+    border-top: 4px solid var(--secondary);
+}
+
+.diplome-card-front {
+    display: flex;
+    flex-direction: column;
+}
+
+.diplome-card-back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--light);
+    padding: 1.5rem;
+    gap: 1rem;
+}
+
+.diplome-card-back img {
+    width: 90%;
+    height: 90%;
+    max-height: 250px;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.download-btn {
+    background: var(--primary);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(139, 115, 85, 0.3);
+    margin-top: 0.5rem;
+}
+
+.download-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 115, 85, 0.4);
+}
+
+
+/* Cartes avec effet Flip au CLIC */
+.diplome-card-flip {
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.diplome-card-inner {
+    position: relative;
+    width: 100%;
+    min-height: 350px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+/* État retourné au clic (via JavaScript) */
+.diplome-card-flip.flipped .diplome-card-inner {
+    transform: rotateY(180deg);
+}
+
+.diplome-card-front,
+.diplome-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    padding: 2rem;
+    border-top: 4px solid var(--secondary);
+}
+
+.diplome-card-front {
+    display: flex;
+    flex-direction: column;
+}
+
+.diplome-card-back {
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--light);
+    padding: 1.5rem;
+}
+
+.diplome-card-back img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+/*ajout pour reduire taille excell eco*/
+
+.diplome-card-back img {
+    width: 100%;
+    height: 100%;
+    /* Remplace 'cover' par 'contain' pour voir toute l'image */
+    object-fit: contain; 
+    /* Ajoute un fond blanc ou gris clair pour combler les bords vides */
+    background-color: #f9f9f9; 
+    display: block;
+}
+
+.diplome-card-back {
+    transform: rotateY(180deg);
+    padding: 10px; /* Ajoute une petite marge interne */
+    background: white;
+}
+        /* Certifications Section */
+        #certifications {
+            background: var(--light);
+        }
+
+        /* Bulletins Section */
+   /* --- SECTION BULLETINS (GRILLE) --- */
+.bulletins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+
+/* --- STYLE DU RECTO (FRONT) --- */
+.diplome-card-front {
+    display: flex;
+    flex-direction: column;
+}
+
+.bulletin-header {
+    background: var(--gradient, #d4c4b0); /* Utilise ton dégradé ou une couleur par défaut */
+    color: white;
+    padding: 1.5rem;
+}
+
+.bulletin-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.bulletin-moyenne {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 10px 0;
+}
+
+.bulletin-moyenne span {
+    font-size: 1rem;
+    color: #7f8c8d;
+}
+
+.bulletin-mention {
+    display: inline-block;
+    background: rgba(212, 196, 176, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: #2c3e50;
+    font-weight: 600;
+    margin: 0 auto;
+}
+
+/* --- STYLE DU VERSO (BACK) --- */
+.diplome-card-back {
+    transform: rotateY(180deg);
+}
+
+.diplome-card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* L'image entière est visible */
+    background-color: white;
+    padding: 5px;
+}
+
+/* On utilise le même style de flip que pour les diplômes */
+.diplome-card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Pour voir tout le bulletin sans couper */
+    background-color: white;
+}
+        /* Stages Section */
+        .stages-list {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .stage-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--secondary);
+            transition: all 0.3s;
+        }
+
+        .stage-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .stage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .stage-title h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .stage-company {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .stage-period {
+            background: rgba(212, 196, 176, 0.25);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .stage-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .stage-missions {
+            margin-bottom: 1.5rem;
+        }
+
+        .stage-missions h4 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .stage-missions ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .stage-missions li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            position: relative;
+        }
+
+        .stage-missions li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .stage-competences {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        /* Activités Extra-scolaires */
+        #activites {
+            background: var(--light);
+        }
+
+        .activites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+        }
+
+        .activite-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .activite-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .activite-image {
+            height: 200px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .activite-content {
+            padding: 2rem;
+        }
+
+        .activite-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .activite-role {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .activite-content p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .activite-content a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .activite-content a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .activite-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .badge {
+            background: rgba(212, 165, 116, 0.2);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, #a69080 0%, #8b7355 100%);
+            color: white;
+        }
+
+        #contact .section-title h2 {
+            color: white;
+        }
+
+        #contact .section-title h2::after {
+            background: white;
+        }
+
+        #contact .section-title p {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .contact-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Contact info sur une ligne */
+.contact-info-line {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.contact-info-icon {
+    font-size: 1.5rem;
+}
+
+.contact-info-text {
+    text-align: left;
+}
+
+.contact-info-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+.contact-info-value {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.contact-info-value a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.contact-info-value a:hover {
+    opacity: 0.8;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.social-link {
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+}
+
+.social-link:hover {
+    background: white;
+    color: var(--primary);
+    transform: translateY(-5px);
+}
+
+/* Réduire la section Contact */
+#contact {
+    min-height: auto;
+    padding: 60px 0 40px;
+}
+        /* Footer */
+        footer {
+            background: #7a6855;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .competences-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .competences-grid-bottom {
+                flex-direction: column;
+                max-width: 100%;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content {
+                grid-column: 1;
+            }
+
+            .timeline-dot {
+                left: 0;
+                transform: translateX(-8px);
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .activites-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info-line {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-info-item {
+                flex-direction: column;
+            }
+
+            .contact-info-text {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .photo-container {
+                width: 250px;
+                height: 250px;
+            }
+
+            section {
+                padding: 80px 0 60px;
+            }
+        }
+		
+/* --- SECTION PROJETS --- */
+/* --- SECTION PROJETS --- */
+#projets {
+    background: white;
+    padding: 80px 0;
+}
+
+.projets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.projet-card {
+    background: #fdfcfb;
+    border-radius: 20px;
+    border: 1px solid #eee;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.projet-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border-color: var(--secondary);
+}
+
+.projet-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--secondary);
+    color: white;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.projet-content {
+    padding: 2.5rem;
+    text-align: center;
+}
+
+.projet-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.projet-content h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.projet-content p {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.projet-tech {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.projet-tech span {
+    background: rgba(212, 196, 176, 0.2);
+    color: var(--primary);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.projet-link {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.projet-link:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* Projet CoVACIEL - Grande carte */
+.projet-covaciel {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 25px;
+    padding: 3rem;
+    margin-top: 3rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    border: 2px solid var(--secondary);
+}
+
+.projet-badge-large {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.covaciel-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.projet-icon-large {
+    font-size: 4.5rem;
+}
+
+.covaciel-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.covaciel-subtitle {
+    color: var(--text-light);
+    font-size: 1.15rem;
+    font-weight: 400;
+}
+
+.covaciel-description {
+    background: white;
+    padding: 1.8rem;
+    border-radius: 15px;
+    margin-bottom: 2.5rem;
+    border-left: 5px solid var(--accent);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.covaciel-description p {
+    margin: 0;
+    line-height: 1.8;
+    color: var(--text);
+    font-size: 1.05rem;
+}
+
+.covaciel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.covaciel-column {
+    background: white;
+    padding: 1.8rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.covaciel-column.piste {
+    border-top: 4px solid #3498db;
+}
+
+.covaciel-column.voiture {
+    border-top: 4px solid #e74c3c;
+}
+
+.covaciel-column.ma-partie {
+    border-top: 4px solid #2ecc71;
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+}
+
+.column-title {
+    font-size: 1.25rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(0,0,0,0.05);
+}
+
+.candidate-block {
+    background: var(--light);
+    padding: 1.2rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+}
+
+.candidate-block:hover {
+    transform: translateX(8px);
+    border-color: var(--secondary);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.candidate-block.highlight {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    border-left: 4px solid #28a745;
+}
+
+.candidate-num {
+    background: var(--primary);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.candidate-content {
+    flex: 1;
+}
+
+.candidate-content strong {
+    display: block;
+    color: var(--primary);
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+}
+
+.candidate-content p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.covaciel-footer {
+    background: white;
+    padding: 1.8rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.covaciel-footer p {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.projet-link-inline {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid var(--secondary);
+    transition: all 0.3s;
+    padding-bottom: 2px;
+}
+
+.projet-link-inline:hover {
+    color: var(--secondary);
+    border-bottom-color: var(--primary);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .covaciel-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .covaciel-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .projets-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.btn-download-cv:hover {
+    background-color: #5d4f41;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    color: white;
+}
+
+.btn-download-cv i {
+    font-size: 1.4rem;
+}
+
+/* Cartes Flip */
+.stage-card-flip {
+    perspective: 1000px;
+    cursor: pointer;
+    margin: 15px 0;
+}
+
+.stage-flip-inner {
+    position: relative;
+    width: 100%;
+    min-height: 400px; /* Hauteur pour bien voir les photos */
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.stage-card-flip.flipped .stage-flip-inner {
+    transform: rotateY(180deg);
+}
+
+.stage-flip-front, .stage-flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+}
+
+.stage-flip-back {
+    transform: rotateY(180deg);
+    background: #f4f4f4;
+    padding: 10px;
+}
+
+/* --- LE DOS DE LA CARTE PHOTO : CÔTE À CÔTE --- */
+.photo-real-size-row {
+    display: flex; /* Aligne les photos sur une ligne */
+    gap: 15px;
+    height: 100%;
+    overflow-x: auto; /* Active le défilement horizontal */
+    align-items: center;
+    padding: 10px;
+    scrollbar-width: thin;
+}
+
+.photo-real-size-row img {
+    height: 90%; /* Prend presque toute la hauteur de la carte */
+    width: auto;   /* Garde sa largeur réelle proportionnelle */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    flex-shrink: 0; /* Empêche l'image de rétrécir */
+}
+
+/* Image Avis au dos */
+.img-avis-real {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: white;
+}
+
+/* Recto design */
+.flip-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: #ffffff;
+}
+.flip-prompt .icon { font-size: 2.5rem; margin-bottom: 10px; }
+
+/* Barre de défilement horizontale pour les photos */
+.photo-real-size-row::-webkit-scrollbar { height: 8px; }
+.photo-real-size-row::-webkit-scrollbar-thumb { 
+    background: #bbb; 
+    border-radius: 10px; 
+}
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#accueil" class="logo">Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#etudes">Études</a></li>
+                <li><a href="#diplomes">Diplômes</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#bulletins">Bulletins</a></li>
+                <li><a href="#stages">Stages</a></li>
+                <li><a href="#activites">Activités</a></li>
+				<li><a href="#projets">Projets</a></li>
+
+				<li><a href="#cv">CV</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Section Accueil -->
+    <section id="accueil">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Bonjour, je suis <span class="highlight">ARTI Betul</span></h1>
+                    <p>Déterminée, sérieuse et rigoureuse, je suis étudiante en BTS CIEL option Informatique et Réseaux. 
+                    Dotée d'un bon esprit d'analyse et d'une grande logique, je m'oriente vers les domaines des réseaux, des systèmes et de la cybersécurité. 
+                    Curieuse, motivée et impliquée, je cherche à développer mes compétences techniques et professionnelles afin d'évoluer dans un métier du numérique</p>
+                    <div class="hero-buttons">
+                        <a href="#stages" class="btn btn-primary">Voir mes expériences</a>
+                        <a href="#contact" class="btn btn-secondary">Me contacter</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="photo-container">
+                        <img src="Betul.jpg" alt="Photo de profil">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section id="competences">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mes Compétences</h2>
+                <p>Un aperçu de mes savoir-faire techniques et personnels</p>
+            </div>
+            
+            <!-- Première ligne : 3 cartes -->
+            <div class="competences-grid">
+                <div class="competence-card">
+                    <div class="competence-icon">💻</div>
+                    <h3>Développement</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">C/C++</span>
+                    </div>
+                </div>
+
+                <div class="competence-card">
+                    <div class="competence-icon">🛠️</div>
+                    <h3>Outils & Technologies</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Git/GitHub</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">GLPI</span>
+                        <span class="skill-tag">GanttProject</span>
+                    </div>
+                </div>
+
+                <div class="competence-card">
+                    <div class="competence-icon">🗣️</div>
+                    <h3>Langues</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Français</span>
+                        <span class="skill-tag">Turc</span>
+                        <span class="skill-tag">Anglais (A2)</span>
+                        <span class="skill-tag">Allemand (A1)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deuxième ligne : 2 cartes centrées -->
+            <div class="competences-grid-bottom">
+                <div class="competence-card">
+                    <div class="competence-icon">👥</div>
+                    <h3>Compétences Personnelles</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Esprit d'équipe</span>
+                        <span class="skill-tag">Polyvalente</span>
+                        <span class="skill-tag">Organisation</span>
+                        <span class="skill-tag">Adaptabilité</span>
+                        <span class="skill-tag">Autonome</span>
+                    </div>
+                </div>
+
+                <div class="competence-card">
+                    <div class="competence-icon">📊</div>
+                    <h3>Gestion de Projet</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">GanttProject</span>
+                        
+                        <span class="skill-tag">Travail d'équipe</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	
+	
+	   <!-- Section Études & Diplômes -->
+<section id="etudes">
+    <div class="container">
+        <div class="section-title">
+            <h2>Parcours Scolaire</h2>
+            <p>Mon parcours académique </p>
+        </div>
+
+        <div class="timeline">
+
+            <!-- Seconde -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-year">2021 - 2022</span>
+                    <h3>Seconde Générale</h3>
+                    <h4>Lycée Robert Schuman – Haguenau</h4>
+                </div>
+            </div>
+
+            <!-- Première STMG -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-year">2022 - 2023</span>
+                    <h3>Première STMG</h3>
+                    <h4>Lycée Robert Schuman – Haguenau</h4>
+                    <p>Découverte du management, du droit, de l’économie et du fonctionnement des organisations.</p>
+                </div>
+            </div>
+
+            <!-- Terminale SIG -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-year">2023 - 2024</span>
+                    <h3>Terminale STMG – Option SIG</h3>
+                    <h4>Lycée Robert Schuman – Haguenau</h4>
+                    <p>
+                        Apprentissage de la gestion de projets numériques et utilisation d’outils informatiques 
+                        comme Excel, VBA et la création de sites web pour des applications de gestion.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Bac -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-year">2024</span>
+                    <h3>Baccalauréat Technologique STMG</h3>
+                    <h4>Lycée Robert Schuman – Haguenau</h4>
+                </div>
+            </div>
+
+            <!-- BTS CIEL 1 -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-year">2024 - 2025</span>
+                    <h3>BTS CIEL – Option Informatique & Réseaux (1ère année)</h3>
+                    <h4>Lycée Heinrich Nessel – Haguenau</h4>
+                    <p>
+                        Formation en cybersécurité, systèmes informatiques et réseaux. Apprentissage de la maintenance
+                        des réseaux, du développement de solutions informatiques et de la protection des données.
+                    </p>
+                </div>
+            </div>
+
+            <!-- BTS CIEL 2 + PROJET -->
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-year">2025 - 2026</span>
+                    <h3>BTS CIEL – Option Informatique & Réseaux (2ème année)</h3>
+                    <h4>Lycée Heinrich Nessel – Haguenau</h4>
+					<br>
+					<p>En deuxième année de BTS CIEL (Cybersécurité, Informatique et Réseaux Électronique) option Informatique et Réseaux, nous consolidons nos compétences en conception, exploitation et maintenance de réseaux, sécurité informatique et traitement de données. Cette année, nous travaillons sur le projet CoVaCIEL, un projet pratique qui nous permet de gérer toutes les étapes d’un projet informatique, de la conception à la mise en œuvre, en équipe, en simulant des situations professionnelles réelles.
+
+</p>
+
+                    <p><strong>Projet CoVaCIEL :</strong> Développement d’un site web statistique dans le cadre du projet Voiture Autonome.</p>
+
+                 <br>   <p><strong>Objectif :</strong> Concevoir une page web dynamique permettant d’afficher les statistiques du véhicule (vitesse, accélération, consommation…).</p> </br>
+
+                    <p><strong>Réalisation technique :</strong></p>
+                    <ul>
+                        <li>Installation et configuration d’un serveur web</li>
+                        <li>Création d’une base de données pour stocker les statistiques</li>
+                        <li>Mise en place d’un réseau sécurisé</li>
+                        <li>Développement d’une page web dynamique</li>
+                    </ul>
+
+                  
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+	<!-- Section Diplômes -->
+<section id="diplomes">
+    <div class="container">
+        <div class="section-title">
+            <h2>Diplômes</h2>
+            <p>Cliquez sur les cartes pour voir les certificats</p>
+        </div>
+        <div class="diplomes-grid">
+            <!-- Brevet avec flip -->
+            <div class="diplome-card-flip" data-group="diplomes">
+                <div class="diplome-card-inner">
+                    <div class="diplome-card-front">
+                        <div class="diplome-icon">📚</div>
+                        <div class="diplome-content">
+                            <h3>Brevet des Collèges</h3>
+                            <p class="diplome-etablissement">Collège</p>
+                            <p class="diplome-date">Obtenu en 2021 avec mention Assez Bien</p>
+                            <p class="diplome-description">Diplôme National du Brevet</p>
+                        </div>
+                    </div>
+                    <div class="diplome-card-back">
+                        <img src="Brevet.jpg" alt="Certificat Brevet">
+                        <a href="Brevet.jpg" download="Brevet_Betul.jpg" class="download-btn">📥 Télécharger</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bac avec flip -->
+            <div class="diplome-card-flip" data-group="diplomes">
+                <div class="diplome-card-inner">
+                    <div class="diplome-card-front">
+                        <div class="diplome-icon">🎓</div>
+                        <div class="diplome-content">
+                            <h3>Baccalauréat Technologique STMG</h3>
+                            <p class="diplome-etablissement">Lycée Robert Schuman – Haguenau</p>
+                            <p class="diplome-date">Obtenu en 2024</p>
+                            <p class="diplome-description">Spécialité Systèmes d'Information de Gestion (SIG)</p>
+                        </div>
+                    </div>
+                    <div class="diplome-card-back">
+                        <img src="bac.jpg" alt="Certificat Bac">
+                        <a href="bac.jpg" download="Bac_Betul.jpg" class="download-btn">📥 Télécharger</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PIX avec flip -->
+            <div class="diplome-card-flip" data-group="diplomes">
+                <div class="diplome-card-inner">
+                    <div class="diplome-card-front">
+                        <div class="diplome-icon">✅</div>
+                        <div class="diplome-content">
+                            <h3>Certification PIX</h3>
+                            <p class="diplome-etablissement">Plateforme PIX</p>
+                            <p class="diplome-date">En cours de validation</p>
+                            <p class="diplome-description">Certification des compétences numériques</p>
+                        </div>
+                    </div>
+                    <div class="diplome-card-back">
+                        <img src="Pix_terminal.jpg" alt="Certificat PIX">
+                        <a href="Pix_terminal.jpg" download="PIX_Betul.jpg" class="download-btn">📥 Télécharger</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Certifications -->
+<section id="certifications">
+    <div class="container">
+        <div class="section-title">
+            <h2>Certifications</h2>
+            <p>Survolez les cartes pour voir les certificats</p>
+        </div>
+        <div class="diplomes-grid">
+            <!-- Cisco sans flip -->
+            <div class="diplome-card">
+                <div class="diplome-icon">🌐</div>
+                <div class="diplome-content">
+                    <h3>Certification Cisco</h3>
+                    <p class="diplome-etablissement">Cisco Networking Academy</p>
+                    <p class="diplome-date">Obtenue en 2025</p>
+                    <p class="diplome-description">Formation en réseaux informatiques et technologies Cisco</p>
+                </div>
+            </div>
+
+          
+
+
+       <div class="diplome-card-flip">
+    <div class="diplome-card-inner">
+        <div class="diplome-card-front">
+            <div class="diplome-icon">🏆</div>
+            <div class="diplome-content">
+                <h3>Prix d'Excellence Économique STMG</h3>
+                <p class="diplome-etablissement">Lycée Robert Schuman – Haguenau</p>
+                <p class="diplome-date">Obtenu en 2023</p>
+                <p class="diplome-description">Récompense pour l'excellence en économie et gestion</p>
+            </div>
+        </div>
+        <div class="diplome-card-back">
+			<img src="Prix_excellence_economique.jpg" alt="Certificat Prix d'Excellence Économique">
+			<a href="Prix_excellence_economique.jpg" download="Prix_Excellence_Betul.jpg" class="download-btn">📥 Télécharger</a>
+        </div>
+    </div>
+</div>
+
+            <!-- PSC1 avec flip -->
+            <div class="diplome-card-flip">
+                <div class="diplome-card-inner">
+                    <div class="diplome-card-front">
+                        <div class="diplome-icon">🚑</div>
+                        <div class="diplome-content">
+                            <h3>Diplôme de Premiers Secours</h3>
+                            <p class="diplome-etablissement">Croix-Rouge Française</p>
+                            <p class="diplome-date">Obtenu en 2019</p>
+                            <p class="diplome-description">Formation aux gestes de premiers secours (PSC1)</p>
+                        </div>
+                    </div>
+                    <div class="diplome-card-back">
+                        <img src="PSC1.jpg" alt="Certificat PSC1">
+						<a href="PSC1.jpg" download="PSC1_Betul.jpg" class="download-btn">📥 Télécharger</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<section id="bulletins">
+    <div class="container">
+        <div class="section-title">
+            <h2>Résultats Scolaires</h2>
+            <p>Survolez les cartes pour voir les bulletins détaillés</p>
+        </div>
+        <div class="diplomes-grid">
+            
+            <div class="diplome-card-flip">
+                <div class="diplome-card-inner">
+                    <div class="diplome-card-front">
+                        <div class="bulletin-header">
+                            <h3>Semestre 1</h3>
+                            <p>Première année 2024-2025</p>
+                        </div>
+                        <div class="bulletin-content">
+                            
+                            <div class="bulletin-mention" style="color: #27ae60; font-weight: bold;">Félicitations</div>
+                        </div>
+                    </div>
+                    <div class="diplome-card-back">
+                        <img src="BULL_1S.jpg" alt="Bulletin Semestre 1">
+						<a href="BULL_1S.jpg" download="Bulletin_S1_Betul.jpg" class="download-btn">📥 Télécharger</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="diplome-card-flip">
+                <div class="diplome-card-inner">
+                    <div class="diplome-card-front">
+                        <div class="bulletin-header">
+                            <h3>Semestre 2</h3>
+                            <p>Première année 2025</p>
+                        </div>
+                        <div class="bulletin-content">
+                           
+                            <div class="bulletin-mention" style="color: #27ae60; font-weight: bold;">Félicitations</div>
+                        </div>
+                    </div>
+                    <div class="diplome-card-back">
+                        <img src="BULL_2S.jpg" alt="Bulletin Semestre 2">
+						<a href="BULL_2S.jpg" download="Bulletin_S2_Betul.jpg" class="download-btn">📥 Télécharger</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="diplome-card" style="opacity: 0.8; border: 2px dashed #ccc;">
+                <div class="bulletin-header">
+                    <h3>Semestre 1</h3>
+                    <p>Deuxième année 2025-2026</p>
+                </div>
+                <div class="bulletin-content">
+                  
+                    <div class="bulletin-mention">Encouragement</div>
+                    <p style="margin-top: 15px; font-style: italic;">📄 Bulletin à venir</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+</section>
+
+    <!-- Section Stages -->
+    <section id="stages">
+        <div class="container">
+            <div class="section-title">
+                <h2>Expériences Professionnelles</h2>
+                <p>Mes stages et expériences en entreprise</p>
+            </div>
+            <div class="stages-list">
+                <div class="stage-card">
+                    <div class="stage-header">
+                        <div class="stage-title">
+                            <h3>Stage Pharmacie</h3>
+                            <p class="stage-company">L'eau Vive Niederbronn-les-Bains</p>
+                        </div>
+                        <div class="stage-period">Février 2021 (2 semaines)</div>
+                    </div>
+                    <p class="stage-description">
+                        Stage de découverte en pharmacie, permettant d'observer le fonctionnement quotidien de l'établissement, les différentes missions du personnel et la gestion des stocks.
+                    </p>
+                    <div class="stage-missions">
+                        <h4>Missions principales :</h4>
+                        <ul>
+                            <li>Scanner les médicaments</li>
+                            <li>Enregistrement des stocks</li>
+                            <li>Rangement des médicaments</li>
+                            <li>Préparation des commandes</li>
+                        </ul>
+                    </div>
+                </div>
+
+<section class="stage-section">
+    <div class="stage-card">
+        <div class="stage-header">
+            <div class="stage-title">
+                <h3>Stage Service Informatique</h3>
+                <p class="stage-company">Centre Hospitalier de Haguenau</p>
+            </div>
+            <div class="stage-period">26 Mai - 4 Juillet 2025</div>
+        </div>
+        
+        <p class="stage-description">
+            Stage au sein du service informatique du Centre Hospitalier de Haguenau, axé sur le support technique, la maintenance du matériel et l'assistance aux utilisateurs.
+        </p>
+        
+        <div class="stage-missions">
+            <h4>Missions principales :</h4>
+            <ul>
+                <li>Activation Secure Boot : Système d'exploitation, Protection des données</li>
+                <li>Gestion et dépannage des imprimantes : Qualité impression, Toner, Reconfiguration pilote</li>
+                <li>Gestion et dépannage des scanners : Positionnement rouleau, Nettoyage capteur</li>
+                <li>Installations nouveaux postes : écran, souris, claviers, imprimantes, doubles-écrans</li>
+                <li>Interventions techniques : Remplacement matériel, Coupure réseau, EPHAD / IFSI</li>
+                <li>Utilisation GLPI</li>
+            </ul>
+        </div>
+
+        <div class="stage-card-flip" onclick="this.classList.toggle('flipped')">
+            <div class="stage-flip-inner">
+                <div class="stage-flip-front">
+                    <div class="flip-prompt">
+                        <span class="icon">📸</span>
+                        <h4>Voir les photos</h4>
+                        <p>Cliquer pour voir les images côte à côte</p>
+                    </div>
+                </div>
+                <div class="stage-flip-back">
+                    <div class="photo-real-size-row">
+                        <img src="hopital_hag.jpg" alt="Hôpital">
+                        <img src="organisation_dspi.jpg" alt="Organisation">
+                        <img src="repar_central.jpg" alt="Réparation">
+                        <img src="service_secureboot.jpg" alt="Service">
+                        <img src="dep_imprimante.jpg" alt="Imprimante">
+                        <img src="rep_scanner.jpg" alt="Scanner">
+                        <img src="double_ecran.jpg" alt="Installation">
+                        <img src="reseaux.jpg" alt="Réseau">
+                        <img src="rep_pc.jpg" alt="Maintenance PC">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stage-card-flip" onclick="this.classList.toggle('flipped')">
+            <div class="stage-flip-inner">
+                <div class="stage-flip-front">
+                    <div class="flip-prompt">
+                        <span class="icon">📜</span>
+                        <h4>Avis du service informatique</h4>
+                        <p>Cliquer pour voir l'avis en grand</p>
+                    </div>
+                </div>
+                <div class="stage-flip-back">
+                    <img src="avis_stage.jpg" alt="Avis" class="img-avis-real">
+                </div>
+            </div>
+        </div>
+
+        <div class="stage-competences">
+            <span class="skill-tag">Support informatique</span>
+            <span class="skill-tag">Windows</span>
+            <span class="skill-tag">Périphériques réseau</span>
+            <span class="skill-tag">Maintenance matériel</span>
+            <span class="skill-tag">GLPI</span>
+        </div>
+    </div>
+</section>
+
+    <!-- Section Activités Extra-scolaires -->
+    <section id="activites">
+        <div class="container">
+            <div class="section-title">
+                <h2>Activités Extra-scolaires</h2>
+                <p>Mes engagements et passions en dehors des études</p>
+            </div>
+            <div class="activites-grid">
+                <div class="activite-card">
+                    <div class="activite-image">🤝</div>
+                    <div class="activite-content">
+                        <h3>Bénévole Association ATSI</h3>
+                        <p class="activite-role">2021 - Aujourd'hui</p>
+                        <p>Travail associatif pour aider les personnes dans le besoin. Bénévole active selon les besoins de l'organisation.</p>
+                        <div class="stage-missions">
+                            <h4>Missions principales :</h4>
+                            <ul>
+                                <li>Aide aux personnes SDF</li>
+                                <li>Participation aux formations</li>
+                                <li>Préparation fournitures scolaires victimes du séisme</li>
+                            </ul>
+                        </div>
+                        <div class="activite-badges">
+                            <span class="badge">Solidarité</span>
+                            <span class="badge">Gestion d'équipe</span>
+                            <span class="badge">Organisation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activite-card">
+                    <div class="activite-image">❤️</div>
+                    <div class="activite-content">
+                        <h3>Adhérente Enfant du Cœur</h3>
+                        <p class="activite-role">Septembre 2023 - Juillet 2024</p>
+                        <p>Création d'association du début à la fin avec mon professeur et ma classe de TSTMG1. Notre objectif : offrir un soutien aux enfants malades hospitalisés au CHU de Strasbourg afin d'apporter une lueur d'espoir et de joie à ceux qui luttent courageusement contre la maladie pendant cette période difficile.</p>
+                        <div class="stage-missions">
+                            <h4>Missions principales :</h4>
+                            <ul>
+                                <li>Collecte de dons via Leetchi</li>
+                                <li>Fournir une aide financière pour traitements médicaux</li>
+                                <li>Gérer les réseaux sociaux</li>
+                            </ul>
+                        </div>
+                        <div class="activite-badges">
+                            <span class="badge">Organisation</span>
+                            <span class="badge">Travail d'équipe</span>
+                            <span class="badge">Communication</span>
+                        </div>
+                        <p style="margin-top: 1rem;">
+                            🌐 <a href="https://enfantducoeur.my.canva.site/enfant-du-coeur-site-internet" target="_blank">Voir le site de l'association</a>
+                        </p>
+                        <p>
+                            💖 <a href="https://www.leetchi.com/fr/c/enfant-du-coeur-1321144" target="_blank">Voir la cagnotte Leetchi</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    </section>
+<section id="projets">
+    <div class="container">
+        <div class="section-title">
+            <h2>Mes Projets</h2>
+            <p>Découvrez mes projets interactifs développés en groupes durant mes années de BTS</p>
+        </div>
+        
+       <div class="projet-card">
+    <div class="projet-badge">Jeu Vidéo</div>
+    <div class="projet-content">
+        <div class="projet-icon">🎮</div>
+        <h3>Balles Perdues</h3>
+        <p>Un jeu de Pong classique codé en JavaScript pur.</p>
+        
+
+        <div class="projet-controls">
+            <h4>Commandes :</h4>
+            <div class="control-grid">
+                <div class="control-item"><strong>J1 (Gauche) :</strong> Z / W</div>
+                <div class="control-item"><strong>J2 (Droite) :</strong> ↑ / ↓</div>
+                <div class="control-item"><strong>Reset :</strong> Touche S</div>
+            </div>
+        </div>
+
+        <div class="projet-tech">
+            <span>JavaScript</span>
+            <span>Canvas API</span>
+        </div>
+        <a href="file:///C:/Users/Betul/Documents/BTS%20CIEL%20IR%20-%20Premi%C3%A8re%20Ann%C3%A9e%202024_2025/Informatique_Didier_ciel1/Introduction_JavaScript/Jeux_Pong_JS/Cr%C3%A9ation%20-%20jeux%20pong/pong2.html" target="_blank" class="projet-link">Lancer le jeu</a>
+
+    </div>
+</div>
+
+          <div class="projet-card">
+    <div class="projet-badge">Outil</div>
+    <div class="projet-content">
+        <div class="projet-icon">🔢</div>
+        <h3>Convertisseur Hexa</h3>
+        <p>Un outil pratique pour convertir instantanément des valeurs entre le système décimal et hexadécimal.</p>
+        <div class="projet-tech">
+            <span>HTML/CSS</span>
+            <span>JS</span>
+        </div>
+        <a href="https://convertisseur-de-base.neocities.org/" target="_blank" class="projet-link">Lancer sur le Web</a>
+    </div>
+</div>
+</div>
+
+<!-- Projet CoVACIEL - Grande carte -->
+<div class="projet-covaciel">
+    <div class="projet-badge-large">🏆 Projet Majeur BTS CIEL 2026</div>
+    
+    <div class="covaciel-header">
+        <div class="projet-icon-large">🏎️</div>
+        <div>
+            <h3>Projet CoVACIEL 2026</h3>
+            <p class="covaciel-subtitle">Développement d'un écosystème de course autonome complet</p>
+        </div>
+    </div>
+
+    <div class="covaciel-description">
+        <p><strong>Objectif :</strong> Créer un véhicule intelligent capable de circuler en autonomie sur circuit avec infrastructure de chronométrage connectée.</p>
+    </div>
+
+    <div class="covaciel-grid">
+        <div class="covaciel-column piste">
+            <h4 class="column-title">📍 Partie Piste (IR)</h4>
+            <div class="candidate-block">
+                <span class="candidate-num">IR1</span>
+                <div class="candidate-content">
+                    <strong>LIDAR & Vision</strong>
+                    <p>LIDAR C1, Caméra QR Code, RaspberryPi, X-bee</p>
+                </div>
+            </div>
+            <div class="candidate-block">
+                <span class="candidate-num">IR2</span>
+                <div class="candidate-content">
+                    <strong>Analyse & Affichage</strong>
+                    <p>Race Board, écran, détection franchissement, Webots</p>
+                </div>
+            </div>
+            <div class="candidate-block">
+                <span class="candidate-num">IR3</span>
+                <div class="candidate-content">
+                    <strong>Web & Réseau</strong>
+                    <p>Site stats, Base de données, Serveur Web sécurisé</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="covaciel-column voiture">
+            <h4 class="column-title">⚙️ Partie Voiture (ER)</h4>
+            <div class="candidate-block">
+                <span class="candidate-num">ER1</span>
+                <div class="candidate-content">
+                    <strong>Direction</strong>
+                    <p>ATmega328p, PWM Servo, CAN, Multiplexage LED</p>
+                </div>
+            </div>
+            <div class="candidate-block">
+                <span class="candidate-num">ER2</span>
+                <div class="candidate-content">
+                    <strong>Propulsion</strong>
+                    <p>PID, Driver Moteur, Bus CAN, LED adressable</p>
+                </div>
+            </div>
+            <div class="candidate-block">
+                <span class="candidate-num">ER3</span>
+                <div class="candidate-content">
+                    <strong>Calculateur</strong>
+                    <p>ESP32, Pilotage autonome, LIDAR, XBEE</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="covaciel-column ma-partie">
+            <h4 class="column-title">💻 Ma Contribution (IR)</h4>
+            <div class="candidate-block highlight">
+                <span class="candidate-num">IR1</span>
+                <div class="candidate-content">
+                    <strong>Front - Détection</strong>
+                    <p>LIDAR A2M12, zones collision/évitement, RPi</p>
+                </div>
+            </div>
+            <div class="candidate-block highlight">
+                <span class="candidate-num">IR2</span>
+                <div class="candidate-content">
+                    <strong>Back - Communication</strong>
+                    <p>Capteur ultrason, Signal X-bee, Buzzer</p>
+                </div>
+            </div>
+            <div class="candidate-block highlight">
+                <span class="candidate-num">IR3</span>
+                <div class="candidate-content">
+                    <strong>Traction - Capteurs</strong>
+                    <p>Centrale inertielle, capteur optique, RPi</p>
+                </div>
+            </div>
+            <div class="candidate-block highlight">
+                <span class="candidate-num">IR4</span>
+                <div class="candidate-content">
+                    <strong>Web - Développement</strong>
+                    <p>Page dynamique, SQL, Config serveur</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="covaciel-footer">
+        <p>🔗 Plus d'informations sur le site officiel : 
+        <a href="https://www.covaciel.fr/#covaciel-2026" target="_blank" class="projet-link-inline">www.covaciel.fr</a></p>
+    </div>
+</div>
+
+        
+        </div>
+    </div>
+</div>
+	
+	<section id="cv" style="padding: 80px 0; background: white; text-align: center; min-height: 60vh; display: flex; align-items: center; justify-content: center;">
+    <div class="container">
+        <div class="section-title">
+            <h2>Mon Curriculum Vitae</h2>
+            <p>Téléchargez mon CV en format PDF</p>
+        </div>
+        <a href="BETUL_CV_2026.pdf" target="_blank" download class="btn-download-cv">
+            📄 Télécharger mon CV (PDF)
+        </a>
+    </div>
+</section>
+
+</section>
+    <!-- Section Contact -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contactez-moi</h2>
+                <p>N'hésitez pas à me contacter pour toute opportunité ou question</p>
+            </div>
+            <div class="contact-content">
+                <!-- Contact Info sur une ligne -->
+                <div class="contact-info-line">
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">📧</div>
+                        <div class="contact-info-text">
+                            <span class="contact-info-label">Email</span>
+                            <span class="contact-info-value"><a href="mailto:betsanane@icloud.com">Betularti@icloud.com</a></span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">📱</div>
+                        <div class="contact-info-text">
+                            <span class="contact-info-label">Téléphone</span>
+                            <span class="contact-info-value">07 71 62 53 39 </span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-info-icon">📍</div>
+                        <div class="contact-info-text">
+                            <span class="contact-info-label">Localisation</span>
+                            <span class="contact-info-value">Reichshoffen 67110 </span>
+                        </div>
+                    </div>
+                </div>
+				
+					<div class="social-links">
+					<a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+					 🔗 <p>LinkeDIn</p></a>
+
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 ARTI Betul - Portfolio étudiant</p>
+    </footer>
+<script>
+    // Smooth scroll pour les liens de navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Animation au scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.competence-card, .stage-card, .activite-card, .bulletin-card, .diplome-card, .projet-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+
+    // Active link dans la navigation
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const sections = document.querySelectorAll('section');
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 150) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.style.color = '';
+            if (link.getAttribute('href').slice(1) === current) {
+                link.style.color = 'var(--secondary)';
+            }
+        });
+    });
+
+    // Gestion du clic sur les cartes diplômes - ferme les autres du même groupe
+    document.querySelectorAll('.diplome-card-flip').forEach(card => {
+        card.addEventListener('click', function() {
+            const group = this.getAttribute('data-group');
+            
+            // Ferme toutes les autres cartes du même groupe
+            document.querySelectorAll(`.diplome-card-flip[data-group="${group}"]`).forEach(otherCard => {
+                if (otherCard !== this) {
+                    otherCard.classList.remove('flipped');
+                }
+            });
+            
+            // Toggle la carte cliquée
+            this.classList.toggle('flipped');
+        });
+    });
+</script>
+</body>
+</html>
