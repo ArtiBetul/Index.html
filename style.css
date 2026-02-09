@@ -1,4 +1,203 @@
+/* ==========================================
+   PORTFOLIO BETUL ARTI - CSS COMPLET
+   Fichier : style.css
+   Description : Tous les styles du portfolio
+   Auteur : Betul ARTI
+   Date : Février 2026
+   ========================================== */
+   /* ==========================================
+   EFFET BULLES + TRANSITION PENCHÉE
+   ========================================== */
+
+/* Bulles animées en fond */
+.bubbles-bg {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.bubbles-bg span {
+    position: absolute;
+    bottom: -100px;
+    width: 18px;
+    height: 18px;
+    background: rgba(196,168,130,0.25);
+    border-radius: 50%;
+    animation: rise 15s infinite ease-in;
+}
+
+.bubbles-bg span:nth-child(1) { left: 10%; animation-duration: 18s; }
+.bubbles-bg span:nth-child(2) { left: 25%; animation-duration: 12s; width: 12px; height: 12px;}
+.bubbles-bg span:nth-child(3) { left: 40%; animation-duration: 16s;}
+.bubbles-bg span:nth-child(4) { left: 55%; animation-duration: 20s; width: 24px; height: 24px;}
+.bubbles-bg span:nth-child(5) { left: 70%; animation-duration: 14s;}
+.bubbles-bg span:nth-child(6) { left: 85%; animation-duration: 17s; width: 10px; height: 10px;}
+.bubbles-bg span:nth-child(7) { left: 35%; animation-duration: 19s;}
+.bubbles-bg span:nth-child(8) { left: 60%; animation-duration: 13s;}
+
+@keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    30% { opacity: 1; }
+    100% { transform: translateY(-110vh) scale(1.3); opacity: 0; }
+}
+
+
+
+/* ==========================================
+   RESET CSS & VARIABLES
+   ========================================== */
+
+/* Reset : Supprimer les marges et padding par défaut de tous les éléments */
 * {
+    margin: 0;                    /* Pas de marge externe */
+    padding: 0;                   /* Pas de marge interne */
+    box-sizing: border-box;       /* Inclure padding et border dans la largeur totale */
+}
+
+/* Variables CSS : Définir les couleurs principales du site */
+:root {
+    --primary: #8b7355;           /* Marron principal */
+    --secondary: #c4a882;         /* Beige secondaire */
+    --accent: #d4a574;            /* Accent doré */
+    --light: #f5f0e8;             /* Beige clair pour les fonds */
+    --dark: #6b5d52;              /* Marron foncé */
+    --text: #5d4e3f;              /* Couleur du texte principal */
+    --text-light: #9b8b7a;        /* Couleur du texte secondaire */
+    --white: #ffffff;             /* Blanc pur */
+    --gradient: linear-gradient(135deg, #e8dcc8 0%, #d4c4b0 100%); /* Dégradé beige */
+    
+    /* Nouvelles couleurs pour chaque item du menu */
+    --nav-color-1: #8b7355;   /* Accueil - Marron */
+    --nav-color-2: #a67c52;   /* Compétences - Marron clair */
+    --nav-color-3: #c4a882;   /* Études - Beige */
+    --nav-color-4: #d4a574;   /* Diplômes - Doré */
+    --nav-color-5: #b89968;   /* Certifications - Beige doré */
+    --nav-color-6: #9b8470;   /* Challenges - Marron gris */
+    --nav-color-7: #8b7355;   /* Bulletins - Marron */
+    --nav-color-8: #a67c52;   /* Stages - Marron clair */
+    --nav-color-9: #c4a882;   /* Activités - Beige */
+    --nav-color-10: #d4a574;  /* Engagements - Doré */
+    --nav-color-11: #b89968;  /* Projets - Beige doré */
+    --nav-color-12: #9b8470;  /* CV - Marron gris */
+    --nav-color-13: #8b7355;  /* Contact - Marron */
+}
+
+/* Style du body (corps de la page) */
+body {
+    font-family: 'Work Sans', sans-serif;  /* Police principale */
+    color: var(--text);                     /* Couleur du texte */
+    line-height: 1.6;                       /* Espacement entre les lignes */
+    background: var(--white);               /* Fond blanc */
+    overflow-x: hidden;                     /* Pas de scroll horizontal */
+}
+
+/* ==========================================
+   NAVIGATION FIXE EN HAUT - AVEC RECTANGLES COLORÉS
+   ========================================== */
+
+/* Barre de navigation */
+nav {
+    position: fixed;              /* Fixer en haut de la page */
+    top: 0;                       /* Positionner tout en haut */
+    width: 100%;                  /* Prendre toute la largeur */
+    background: rgba(255, 255, 255, 0.98);  /* Fond blanc semi-transparent */
+    backdrop-filter: blur(10px);  /* Effet de flou sur le fond */
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05); /* Ombre portée légère */
+    z-index: 1000;                /* Au-dessus de tous les autres éléments */
+    padding: 0.8rem 0;            /* Espacement vertical réduit */
+    animation: slideDown 0.5s ease-out; /* Animation d'apparition */
+}
+
+/* Animation de la navigation qui descend */
+@keyframes slideDown {
+    from { 
+        transform: translateY(-100%);  /* Commencer au-dessus de l'écran */
+    }
+    to { 
+        transform: translateY(0);      /* Arriver à sa position normale */
+    }
+}
+
+/* Conteneur de la navigation */
+.nav-container {
+    max-width: 100%;              /* Utiliser toute la largeur disponible */
+    margin: 0 auto;               /* Centrer horizontalement */
+    padding: 0 0.5rem;            /* Espacement minimal sur les côtés */
+    display: flex;                /* Utiliser flexbox */
+    justify-content: flex-start;  /* Aligner à gauche */
+    align-items: center;          /* Aligner verticalement */
+    gap: 1rem;                    /* Espace entre logo et menu */
+}
+
+/* Logo "Portfolio" */
+.logo {
+    font-family: 'Playfair Display', serif;  /* Police élégante */
+    font-size: 1.1rem;            /* Taille du texte très réduite */
+    font-weight: 700;             /* Gras */
+    color: var(--primary);        /* Couleur marron */
+    text-decoration: none;        /* Pas de soulignement */
+    margin-right: 0;              /* Pas de marge à droite */
+    flex-shrink: 0;               /* Ne pas rétrécir */
+}
+
+/* Liste des liens de navigation */
+.nav-links {
+    display: flex;                /* Afficher en ligne */
+    list-style: none;             /* Pas de puces */
+    gap: 0.4rem;                  /* Petit espacement entre les liens */
+    flex-wrap: nowrap;            /* Pas de retour à la ligne */
+    align-items: center;          /* Alignement vertical */
+    flex: 1;                      /* Prendre tout l'espace restant */
+    justify-content: space-between; /* Répartir l'espace uniformément */
+}
+
+/* Chaque lien de navigation - AVEC RECTANGLE */
+.nav-links a {
+    text-decoration: none;        /* Pas de soulignement */
+    color: var(--text);           /* Texte marron foncé */
+    font-weight: 500;             /* Semi-gras */
+    font-size: 0.75rem;           /* Taille du texte */
+    transition: all 0.3s ease;    /* Transition fluide */
+    position: relative;           /* Positionnement relatif */
+    padding: 0.5rem 0.8rem;       /* Espacement interne confortable */
+    border-radius: 6px;           /* Coins arrondis */
+    border: 1px solid rgba(139, 115, 85, 0.2); /* Bordure légère */
+    background: var(--light);     /* Fond beige clair par défaut */
+    white-space: nowrap;          /* Empêche le retour à la ligne */
+    flex: 1;                      /* Chaque lien prend la même largeur */
+    text-align: center;           /* Centrer le texte */
+}
+
+/* Effet au survol du lien */
+.nav-links a:hover {
+    transform: translateY(-2px);   /* Légère élévation */
+    box-shadow: 0 4px 12px rgba(139, 115, 85, 0.15); /* Ombre */
+    border-color: var(--secondary); /* Bordure beige */
+    background: rgba(245, 240, 232, 0.8); /* Fond légèrement plus clair */
+}
+
+/* Lien actif (section courante) - COULEUR DIFFÉRENTE POUR CHAQUE */
+.nav-links li:nth-child(1) a.active { background: var(--nav-color-1); color: white; border-color: var(--nav-color-1); }
+.nav-links li:nth-child(2) a.active { background: var(--nav-color-2); color: white; border-color: var(--nav-color-2); }
+.nav-links li:nth-child(3) a.active { background: var(--nav-color-3); color: white; border-color: var(--nav-color-3); }
+.nav-links li:nth-child(4) a.active { background: var(--nav-color-4); color: white; border-color: var(--nav-color-4); }
+.nav-links li:nth-child(5) a.active { background: var(--nav-color-5); color: white; border-color: var(--nav-color-5); }
+.nav-links li:nth-child(6) a.active { background: var(--nav-color-6); color: white; border-color: var(--nav-color-6); }
+.nav-links li:nth-child(7) a.active { background: var(--nav-color-7); color: white; border-color: var(--nav-color-7); }
+.nav-links li:nth-child(8) a.active { background: var(--nav-color-8); color: white; border-color: var(--nav-color-8); }
+.nav-links li:nth-child(9) a.active { background: var(--nav-color-9); color: white; border-color: var(--nav-color-9); }
+.nav-links li:nth-child(10) a.active { background: var(--nav-color-10); color: white; border-color: var(--nav-color-10); }
+.nav-links li:nth-child(11) a.active { background: var(--nav-color-11); color: white; border-color: var(--nav-color-11); }
+.nav-links li:nth-child(12) a.active { background: var(--nav-color-12); color: white; border-color: var(--nav-color-12); }
+.nav-links li:nth-child(13) a.active { background: var(--nav-color-13); color: white; border-color: var(--nav-color-13); }
+
+/* Effet supplémentaire pour lien actif */
+.nav-links a.active {
+    box-shadow: 0 4px 15px rgba(139, 115, 85, 0.3); /* Ombre plus forte */
+    transform: translateY(-2px);    /* Légère élévation */
+}
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -215,8 +414,8 @@
 
         .photo-container {
             position: relative;
-            width: 350px;
-            height: 350px;
+            width: 250px;
+            height: 250px;
         }
 
         .photo-container img {
@@ -433,7 +632,7 @@
         }
 
         .diplome-card {
-            background: var(--light);
+            background: white;
             border-radius: 15px;
             padding: 2rem;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
@@ -1620,6 +1819,7 @@
     border-radius: 20px;
 }
 
+
 .cyber-box h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
@@ -1643,4 +1843,430 @@
     font-size: 0.8rem;
     color: var(--primary);
     font-weight: 500;
+}
+
+
+/* Navigation avec rectangles et changement de couleur */
+.nav-links a {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: transparent;
+    transition: all 0.3s;
+}
+
+.nav-links a:hover {
+    background: rgba(212, 196, 176, 0.15);
+}
+
+.nav-links a.active {
+    background: var(--secondary);
+    color: white !important;
+}
+
+/* ==========================================
+   SECTION CV - BOUTON DE TÉLÉCHARGEMENT
+   ========================================== */
+
+/* Section CV */
+#cv {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 100px 0 !important;
+}
+
+/* Conteneur du bouton CV */
+.cv-download-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Bouton de téléchargement du CV - SUPER DESIGN */
+.btn-download-cv {
+    /* Positionnement et dimensions */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 45px;
+    
+    /* Apparence */
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    
+    /* Ombres et effets */
+    box-shadow: 0 8px 25px rgba(139, 115, 85, 0.3);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    
+    /* Transitions */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Effet de brillance qui traverse le bouton */
+.btn-download-cv::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s;
+}
+
+/* Animation de brillance au survol */
+.btn-download-cv:hover::before {
+    left: 100%;
+}
+
+/* Effet au survol du bouton */
+.btn-download-cv:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(139, 115, 85, 0.5);
+    border-color: var(--accent);
+}
+
+/* Effet au clic */
+.btn-download-cv:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(139, 115, 85, 0.4);
+}
+
+/* Icône du bouton */
+.btn-download-cv::after {
+    content: '⬇';
+    font-size: 1.3rem;
+    animation: bounce 2s infinite;
+}
+
+/* Animation de rebond pour l'icône */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Texte sous le bouton */
+.cv-info-text {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+/* Badge d'information */
+.cv-badge {
+    display: inline-block;
+    background: rgba(212, 196, 176, 0.2);
+    color: var(--primary);
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .btn-download-cv {
+        padding: 18px 35px;
+        font-size: 1rem;
+    }
+}
+/* ==========================================
+   RÉDUCTION ESPACEMENT CHALLENGES -> BULLETINS
+   ========================================== */
+
+/* Réduire l'espace en bas de la section Challenges */
+#challenges {
+    padding-bottom: 40px !important;
+}
+
+/* Réduire l'espace en haut de la section Bulletins */
+#bulletins {
+    padding-top: 40px !important;
+}
+
+/* ==========================================
+   RESPONSIVE NAVIGATION
+   ========================================== */
+
+/* Pour écrans moyens - réduire encore plus la taille */
+@media (max-width: 1600px) {
+    .nav-links a {
+        font-size: 0.65rem;
+        padding: 0.35rem 0.5rem;
+    }
+    
+    .logo {
+        font-size: 1rem;
+        margin-right: 0.8rem;
+    }
+    
+    .nav-links {
+        gap: 0.25rem;
+    }
+}
+
+@media (max-width: 1400px) {
+    .nav-links a {
+        font-size: 0.6rem;
+        padding: 0.3rem 0.45rem;
+    }
+    
+    .logo {
+        font-size: 0.95rem;
+        margin-right: 0.7rem;
+    }
+    
+    .nav-links {
+        gap: 0.2rem;
+    }
+}
+
+/* Pour petits écrans - permettre le retour à la ligne si vraiment nécessaire */
+@media (max-width: 1100px) {
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+    
+    .nav-links a {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.5rem;
+    }
+}
+
+/* ==========================================
+   PAGE D'ACCUEIL ANIMÉE
+   ========================================== */
+
+/* Écran de bienvenue plein écran */
+#welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, var(--light) 0%, #f8f3ed 50%, var(--secondary) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+    animation: fadeOutWelcome 1s ease-in-out 4s forwards;
+}
+
+/* Animation de disparition de l'écran de bienvenue */
+@keyframes fadeOutWelcome {
+    to {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+}
+
+/* Contenu de bienvenue */
+.welcome-content {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+/* Titre principal avec animation */
+.welcome-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.welcome-title .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUpFade 0.8s ease-out forwards;
+}
+
+.welcome-title .word:nth-child(1) { animation-delay: 0.2s; }
+.welcome-title .word:nth-child(2) { animation-delay: 0.4s; }
+.welcome-title .word:nth-child(3) { animation-delay: 0.6s; }
+.welcome-title .word:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes slideUpFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Sous-titre avec le nom */
+.welcome-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 1rem;
+}
+
+.welcome-subtitle .subtitle-word {
+    display: inline-block;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: zoomIn 0.6s ease-out forwards;
+}
+
+.welcome-subtitle .subtitle-word:nth-child(1) { animation-delay: 1.2s; }
+.welcome-subtitle .subtitle-word:nth-child(2) { animation-delay: 1.4s; margin-left: 0.5rem; }
+
+@keyframes zoomIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Rôle/fonction */
+.welcome-role {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 1.8s forwards;
+}
+
+/* Indicateur de scroll */
+.scroll-indicator {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 2.5s forwards;
+    cursor: pointer;
+}
+
+.scroll-indicator span {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.arrow-down {
+    font-size: 2rem;
+    color: var(--primary);
+    animation: bounce 1.5s infinite 3s;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+/* Cercles animés en arrière-plan */
+.animated-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(139, 115, 85, 0.1);
+    animation: float 20s infinite ease-in-out;
+}
+
+.circle-1 {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.circle-2 {
+    width: 200px;
+    height: 200px;
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.circle-3 {
+    width: 400px;
+    height: 400px;
+    bottom: 5%;
+    left: 50%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+    25% {
+        transform: translateY(-30px) translateX(20px) scale(1.1);
+    }
+    50% {
+        transform: translateY(-10px) translateX(-20px) scale(0.9);
+    }
+    75% {
+        transform: translateY(-40px) translateX(10px) scale(1.05);
+    }
+}
+
+/* Cacher le contenu principal au départ */
+#main-content {
+    opacity: 0;
+    animation: fadeInContent 1s ease-out 4.5s forwards;
+}
+
+@keyframes fadeInContent {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Cacher la navigation au départ */
+#main-nav {
+    opacity: 0;
+    transform: translateY(-100%);
+    animation: slideDownNav 0.8s ease-out 4.3s forwards;
+}
+
+@keyframes slideDownNav {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive pour la page de bienvenue */
+@media (max-width: 768px) {
+    .welcome-title {
+        font-size: 2.5rem;
+    }
+    
+    .welcome-subtitle {
+        font-size: 1.8rem;
+    }
+    
+    .welcome-role {
+        font-size: 1rem;
+    }
+    
+    .circle-1, .circle-2, .circle-3 {
+        width: 150px;
+        height: 150px;
+    }
 }

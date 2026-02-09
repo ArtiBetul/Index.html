@@ -5,1486 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - ARTI Betul</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #8b7355;
-            --secondary: #c4a882;
-            --accent: #d4a574;
-            --light: #f5f0e8;
-            --dark: #6b5d52;
-            --text: #5d4e3f;
-            --text-light: #9b8b7a;
-            --white: #ffffff;
-            --gradient: linear-gradient(135deg, #e8dcc8 0%, #d4c4b0 100%);
-        }
-
-        body {
-            font-family: 'Work Sans', sans-serif;
-            color: var(--text);
-            line-height: 1.6;
-            background: var(--white);
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-            z-index: 1000;
-            padding: 1.2rem 0;
-            animation: slideDown 0.5s ease-out;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--secondary);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        section {
-            min-height: 100vh;
-            padding: 100px 0 80px;
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        section:nth-child(2) { animation-delay: 0.1s; }
-        section:nth-child(3) { animation-delay: 0.2s; }
-        section:nth-child(4) { animation-delay: 0.3s; }
-
-        /* Hero Section */
-        #accueil {
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, rgba(245, 240, 232, 0.8) 0%, rgba(248, 243, 236, 0.6) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        #accueil::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(212, 196, 176, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            color: var(--primary);
-        }
-
-        .hero-text .highlight {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-text p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.9rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s;
-            display: inline-block;
-            font-size: 0.95rem;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            box-shadow: 0 4px 15px rgba(212, 196, 176, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(212, 196, 176, 0.4);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .hero-image {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .photo-container {
-            position: relative;
-            width: 350px;
-            height: 350px;
-        }
-
-        .photo-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            position: relative;
-            z-index: 2;
-        }
-
-        .photo-container::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            border-radius: 20px;
-            z-index: 1;
-        }
-
-        /* Section Title */
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text-light);
-            font-size: 1.1rem;
-        }
-
-        /* Compétences Section */
-        #competences {
-            background: var(--light);
-        }
-
-        .competences-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .competences-grid-bottom {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            max-width: 680px;
-            margin: 0 auto;
-        }
-
-        .competence-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .competence-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        }
-
-        .competence-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .competence-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-tag {
-            background: rgba(212, 196, 176, 0.2);
-            color: var(--primary);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* Études & Diplômes */
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--secondary), var(--accent));
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content {
-            grid-column: 2;
-        }
-
-        .timeline-item:nth-child(even) .timeline-empty {
-            grid-column: 1;
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            position: relative;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            top: 2rem;
-            transform: translateX(-50%);
-            width: 16px;
-            height: 16px;
-            background: white;
-            border: 4px solid var(--secondary);
-            border-radius: 50%;
-            z-index: 2;
-        }
-
-        .timeline-year {
-            display: inline-block;
-            background: var(--gradient);
-            color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .timeline-content h3 {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-content h4 {
-            color: var(--text-light);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .timeline-content p {
-            color: var(--text-light);
-            line-height: 1.7;
-            margin-bottom: 0.8rem;
-        }
-
-        .timeline-content ul {
-            margin-top: 0.8rem;
-            padding-left: 1.5rem;
-        }
-
-        .timeline-content li {
-            color: var(--text-light);
-            margin-bottom: 0.4rem;
-        }
-
-        /* Diplômes Section */
-        .diplomes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .diplome-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            border-top: 4px solid var(--secondary);
-        }
-
-        .diplome-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            border-top-color: var(--accent);
-        }
-
-        .diplome-icon {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .diplome-content h3 {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 0.8rem;
-            text-align: center;
-        }
-
-        .diplome-etablissement {
-            color: var(--secondary);
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .diplome-date {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .diplome-description {
-            color: var(--text-light);
-            text-align: center;
-            line-height: 1.6;
-        }
-		
-		/* Cartes avec effet Flip au CLIC */
-.diplome-card-flip {
-    perspective: 1000px;
-    cursor: pointer;
-}
-
-.diplome-card-inner {
-    position: relative;
-    width: 100%;
-    min-height: 350px;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-}
-
-/* État retourné au clic (via JavaScript) */
-.diplome-card-flip.flipped .diplome-card-inner {
-    transform: rotateY(180deg);
-}
-
-.diplome-card-front,
-.diplome-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 15px;
-    background: white;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    padding: 2rem;
-    border-top: 4px solid var(--secondary);
-}
-
-.diplome-card-front {
-    display: flex;
-    flex-direction: column;
-}
-
-.diplome-card-back {
-    transform: rotateY(180deg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: var(--light);
-    padding: 1.5rem;
-    gap: 1rem;
-}
-
-.diplome-card-back img {
-    width: 90%;
-    height: 90%;
-    max-height: 250px;
-    object-fit: contain;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.download-btn {
-    background: var(--primary);
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(139, 115, 85, 0.3);
-    margin-top: 0.5rem;
-}
-
-.download-btn:hover {
-    background: var(--secondary);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(139, 115, 85, 0.4);
-}
-
-
-/* Cartes avec effet Flip au CLIC */
-.diplome-card-flip {
-    perspective: 1000px;
-    cursor: pointer;
-}
-
-.diplome-card-inner {
-    position: relative;
-    width: 100%;
-    min-height: 350px;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-}
-
-/* État retourné au clic (via JavaScript) */
-.diplome-card-flip.flipped .diplome-card-inner {
-    transform: rotateY(180deg);
-}
-
-.diplome-card-front,
-.diplome-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 15px;
-    background: white;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    padding: 2rem;
-    border-top: 4px solid var(--secondary);
-}
-
-.diplome-card-front {
-    display: flex;
-    flex-direction: column;
-}
-
-.diplome-card-back {
-    transform: rotateY(180deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--light);
-    padding: 1.5rem;
-}
-
-.diplome-card-back img {
-    width: 90%;
-    height: 90%;
-    object-fit: contain;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-/*ajout pour reduire taille excell eco*/
-
-.diplome-card-back img {
-    width: 100%;
-    height: 100%;
-    /* Remplace 'cover' par 'contain' pour voir toute l'image */
-    object-fit: contain; 
-    /* Ajoute un fond blanc ou gris clair pour combler les bords vides */
-    background-color: #f9f9f9; 
-    display: block;
-}
-
-.diplome-card-back {
-    transform: rotateY(180deg);
-    padding: 10px; /* Ajoute une petite marge interne */
-    background: white;
-}
-        /* Certifications Section */
-        #certifications {
-            background: var(--light);
-        }
-
-        /* Bulletins Section */
-   /* --- SECTION BULLETINS (GRILLE) --- */
-.bulletins-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-
-/* --- STYLE DU RECTO (FRONT) --- */
-.diplome-card-front {
-    display: flex;
-    flex-direction: column;
-}
-
-.bulletin-header {
-    background: var(--gradient, #d4c4b0); /* Utilise ton dégradé ou une couleur par défaut */
-    color: white;
-    padding: 1.5rem;
-}
-
-.bulletin-content {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-grow: 1;
-}
-
-.bulletin-moyenne {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #2c3e50;
-    margin: 10px 0;
-}
-
-.bulletin-moyenne span {
-    font-size: 1rem;
-    color: #7f8c8d;
-}
-
-.bulletin-mention {
-    display: inline-block;
-    background: rgba(212, 196, 176, 0.2);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    color: #2c3e50;
-    font-weight: 600;
-    margin: 0 auto;
-}
-
-/* --- STYLE DU VERSO (BACK) --- */
-.diplome-card-back {
-    transform: rotateY(180deg);
-}
-
-.diplome-card-back img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* L'image entière est visible */
-    background-color: white;
-    padding: 5px;
-}
-
-/* On utilise le même style de flip que pour les diplômes */
-.diplome-card-back img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Pour voir tout le bulletin sans couper */
-    background-color: white;
-}
-        /* Stages Section */
-        .stages-list {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .stage-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border-left: 5px solid var(--secondary);
-            transition: all 0.3s;
-        }
-
-        .stage-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-        }
-
-        .stage-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .stage-title h3 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 0.3rem;
-        }
-
-        .stage-company {
-            color: var(--secondary);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .stage-period {
-            background: rgba(212, 196, 176, 0.25);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .stage-description {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .stage-missions {
-            margin-bottom: 1.5rem;
-        }
-
-        .stage-missions h4 {
-            color: var(--primary);
-            margin-bottom: 0.8rem;
-            font-size: 1rem;
-        }
-
-        .stage-missions ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .stage-missions li {
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-            position: relative;
-        }
-
-        .stage-missions li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-            font-weight: bold;
-        }
-
-        .stage-competences {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        /* Activités Extra-scolaires */
-        #activites {
-            background: var(--light);
-        }
-
-        .activites-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 2rem;
-        }
-
-        .activite-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-        }
-
-        .activite-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .activite-image {
-            height: 200px;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-        }
-
-        .activite-content {
-            padding: 2rem;
-        }
-
-        .activite-content h3 {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .activite-role {
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .activite-content p {
-            color: var(--text-light);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .activite-content a {
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .activite-content a:hover {
-            color: var(--primary);
-            text-decoration: underline;
-        }
-
-        .activite-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .badge {
-            background: rgba(212, 165, 116, 0.2);
-            color: var(--dark);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* Contact Section */
-        #contact {
-            background: linear-gradient(135deg, #a69080 0%, #8b7355 100%);
-            color: white;
-        }
-
-        #contact .section-title h2 {
-            color: white;
-        }
-
-        #contact .section-title h2::after {
-            background: white;
-        }
-
-        #contact .section-title p {
-            color: rgba(255,255,255,0.8);
-        }
-
-        .contact-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* Contact info sur une ligne */
-.contact-info-line {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 1.2rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-}
-
-.contact-info-item {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-}
-
-.contact-info-icon {
-    font-size: 1.5rem;
-}
-
-.contact-info-text {
-    text-align: left;
-}
-
-.contact-info-label {
-    font-size: 0.8rem;
-    opacity: 0.8;
-    display: block;
-    margin-bottom: 0.2rem;
-}
-
-.contact-info-value {
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-.contact-info-value a {
-    color: white;
-    text-decoration: none;
-    transition: opacity 0.3s;
-}
-
-.contact-info-value a:hover {
-    opacity: 0.8;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-}
-
-.social-link {
-    width: 50px;
-    height: 50px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-decoration: none;
-    font-size: 1.5rem;
-    transition: all 0.3s;
-}
-
-.social-link:hover {
-    background: white;
-    color: var(--primary);
-    transform: translateY(-5px);
-}
-
-/* Réduire la section Contact */
-#contact {
-    min-height: auto;
-    padding: 60px 0 40px;
-}
-        /* Footer */
-        footer {
-            background: #7a6855;
-            color: rgba(255,255,255,0.7);
-            text-align: center;
-            padding: 2rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-            }
-
-            .competences-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .competences-grid-bottom {
-                flex-direction: column;
-                max-width: 100%;
-            }
-
-            .timeline::before {
-                left: 0;
-            }
-
-            .timeline-item {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline-item:nth-child(even) .timeline-content {
-                grid-column: 1;
-            }
-
-            .timeline-dot {
-                left: 0;
-                transform: translateX(-8px);
-            }
-
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-
-            .activites-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-info-line {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .contact-info-item {
-                flex-direction: column;
-            }
-
-            .contact-info-text {
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .photo-container {
-                width: 250px;
-                height: 250px;
-            }
-
-            section {
-                padding: 80px 0 60px;
-            }
-        }
-		
-/* --- SECTION PROJETS --- */
-/* --- SECTION PROJETS --- */
-#projets {
-    background: white;
-    padding: 80px 0;
-}
-
-.projets-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
-    margin-bottom: 3rem;
-}
-
-.projet-card {
-    background: #fdfcfb;
-    border-radius: 20px;
-    border: 1px solid #eee;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.projet-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    border-color: var(--secondary);
-}
-
-.projet-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--secondary);
-    color: white;
-    padding: 6px 15px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-
-.projet-content {
-    padding: 2.5rem;
-    text-align: center;
-}
-
-.projet-icon {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.projet-content h3 {
-    color: var(--primary);
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-.projet-content p {
-    color: #666;
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-.projet-tech {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
-
-.projet-tech span {
-    background: rgba(212, 196, 176, 0.2);
-    color: var(--primary);
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.projet-link {
-    display: inline-block;
-    padding: 12px 30px;
-    background: var(--primary);
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: 600;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.projet-link:hover {
-    background: var(--secondary);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-
-/* Projet CoVACIEL - Grande carte */
-.projet-covaciel {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-radius: 25px;
-    padding: 3rem;
-    margin-top: 3rem;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    border: 2px solid var(--secondary);
-}
-
-.projet-badge-large {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    padding: 0.8rem 2rem;
-    border-radius: 30px;
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.covaciel-header {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.projet-icon-large {
-    font-size: 4.5rem;
-}
-
-.covaciel-header h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-}
-
-.covaciel-subtitle {
-    color: var(--text-light);
-    font-size: 1.15rem;
-    font-weight: 400;
-}
-
-.covaciel-description {
-    background: white;
-    padding: 1.8rem;
-    border-radius: 15px;
-    margin-bottom: 2.5rem;
-    border-left: 5px solid var(--accent);
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-}
-
-.covaciel-description p {
-    margin: 0;
-    line-height: 1.8;
-    color: var(--text);
-    font-size: 1.05rem;
-}
-
-.covaciel-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.covaciel-column {
-    background: white;
-    padding: 1.8rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-}
-
-.covaciel-column.piste {
-    border-top: 4px solid #3498db;
-}
-
-.covaciel-column.voiture {
-    border-top: 4px solid #e74c3c;
-}
-
-.covaciel-column.ma-partie {
-    border-top: 4px solid #2ecc71;
-    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
-}
-
-.column-title {
-    font-size: 1.25rem;
-    color: var(--primary);
-    margin-bottom: 1.5rem;
-    text-align: center;
-    font-weight: 600;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid rgba(0,0,0,0.05);
-}
-
-.candidate-block {
-    background: var(--light);
-    padding: 1.2rem;
-    border-radius: 12px;
-    margin-bottom: 1rem;
-    display: flex;
-    gap: 1rem;
-    transition: all 0.3s;
-    border: 1px solid transparent;
-}
-
-.candidate-block:hover {
-    transform: translateX(8px);
-    border-color: var(--secondary);
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-.candidate-block.highlight {
-    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-    border-left: 4px solid #28a745;
-}
-
-.candidate-num {
-    background: var(--primary);
-    color: white;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 0.95rem;
-    flex-shrink: 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-
-.candidate-content {
-    flex: 1;
-}
-
-.candidate-content strong {
-    display: block;
-    color: var(--primary);
-    margin-bottom: 0.4rem;
-    font-size: 1rem;
-}
-
-.candidate-content p {
-    color: var(--text-light);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin: 0;
-}
-
-.covaciel-footer {
-    background: white;
-    padding: 1.8rem;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-}
-
-.covaciel-footer p {
-    margin: 0;
-    font-size: 1.05rem;
-}
-
-.projet-link-inline {
-    color: var(--primary);
-    font-weight: 600;
-    text-decoration: none;
-    border-bottom: 2px solid var(--secondary);
-    transition: all 0.3s;
-    padding-bottom: 2px;
-}
-
-.projet-link-inline:hover {
-    color: var(--secondary);
-    border-bottom-color: var(--primary);
-}
-
-/* Responsive */
-@media (max-width: 968px) {
-    .covaciel-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .covaciel-header {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .projets-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.btn-download-cv:hover {
-    background-color: #5d4f41;
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    color: white;
-}
-
-.btn-download-cv i {
-    font-size: 1.4rem;
-}
-
-/* Cartes Flip */
-.stage-card-flip {
-    perspective: 1000px;
-    cursor: pointer;
-    margin: 15px 0;
-}
-
-.stage-flip-inner {
-    position: relative;
-    width: 100%;
-    min-height: 400px; /* Hauteur pour bien voir les photos */
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
-}
-
-.stage-card-flip.flipped .stage-flip-inner {
-    transform: rotateY(180deg);
-}
-
-.stage-flip-front, .stage-flip-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 12px;
-    border: 1px solid #ddd;
-}
-
-.stage-flip-back {
-    transform: rotateY(180deg);
-    background: #f4f4f4;
-    padding: 10px;
-}
-
-/* --- LE DOS DE LA CARTE PHOTO : CÔTE À CÔTE --- */
-.photo-real-size-row {
-    display: flex; /* Aligne les photos sur une ligne */
-    gap: 15px;
-    height: 100%;
-    overflow-x: auto; /* Active le défilement horizontal */
-    align-items: center;
-    padding: 10px;
-    scrollbar-width: thin;
-}
-
-.photo-real-size-row img {
-    height: 90%; /* Prend presque toute la hauteur de la carte */
-    width: auto;   /* Garde sa largeur réelle proportionnelle */
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    flex-shrink: 0; /* Empêche l'image de rétrécir */
-}
-
-/* Image Avis au dos */
-.img-avis-real {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background: white;
-}
-
-/* Recto design */
-.flip-prompt {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    background: #ffffff;
-}
-.flip-prompt .icon { font-size: 2.5rem; margin-bottom: 10px; }
-
-/* Barre de défilement horizontale pour les photos */
-.photo-real-size-row::-webkit-scrollbar { height: 8px; }
-.photo-real-size-row::-webkit-scrollbar-thumb { 
-    background: #bbb; 
-    border-radius: 10px; 
-}
-
-
-
-    </style>
-</head>
+	<link rel="stylesheet" href="style.css">
+	
+	</head>
 <body>
+
+<!-- PAGE D'ACCUEIL ANIMÉE -->
+    <div id="welcome-screen">
+        <div class="welcome-content">
+            <h1 class="welcome-title">
+                <span class="word">Bienvenue</span>
+                <span class="word">sur</span>
+                <span class="word">mon</span>
+                <span class="word">Portfolio</span>
+            </h1>
+            <div class="welcome-subtitle">
+                <span class="subtitle-word">ARTI</span>
+                <span class="subtitle-word">Betül</span>
+            </div>
+            <div class="welcome-role">
+                <span class="role-text">Étudiante BTS CIEL - Cybersécurité & Réseaux</span>
+            </div>
+            <div class="scroll-indicator">
+                <span>Découvrir</span>
+                <div class="arrow-down">↓</div>
+            </div>
+        </div>
+        <div class="animated-bg">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+        </div>
+    </div>
+
+
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <a href="#accueil" class="logo">Portfolio</a>
+
             <ul class="nav-links">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#competences">Compétences</a></li>
                 <li><a href="#etudes">Études</a></li>
                 <li><a href="#diplomes">Diplômes</a></li>
                 <li><a href="#certifications">Certifications</a></li>
+				<li><a href="#challenges">Challenges</a></li>
                 <li><a href="#bulletins">Bulletins</a></li>
                 <li><a href="#stages">Stages</a></li>
                 <li><a href="#activites">Activités</a></li>
+				<li><a href="#engagements">Engagements</a></li>
 				<li><a href="#projets">Projets</a></li>
 
 				<li><a href="#cv">CV</a></li>
@@ -1498,10 +68,20 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Bonjour, je suis <span class="highlight">ARTI Betul</span></h1>
-                    <p>Déterminée, sérieuse et rigoureuse, je suis étudiante en BTS CIEL option Informatique et Réseaux. 
-                    Dotée d'un bon esprit d'analyse et d'une grande logique, je m'oriente vers les domaines des réseaux, des systèmes et de la cybersécurité. 
-                    Curieuse, motivée et impliquée, je cherche à développer mes compétences techniques et professionnelles afin d'évoluer dans un métier du numérique</p>
+                  <p>
+Déterminée, sérieuse et rigoureuse, je suis étudiante en BTS CIEL (Cybersécurité, Informatique et Réseaux, Électronique), option Informatique et Réseaux.<br><br>
+
+Cette formation pluridisciplinaire me permet d’acquérir des compétences solides en administration réseau, sécurisation des systèmes d’information, maintenance informatique et gestion des infrastructures.<br><br>
+
+Dotée d’un bon esprit d’analyse et d’une grande logique, je m’oriente avec détermination vers les domaines des réseaux, des systèmes et de la cybersécurité. Curieuse, motivée et impliquée, je m’investis pleinement dans mes projets techniques afin de développer mes compétences professionnelles et évoluer dans les métiers du numérique.<br><br>
+
+Je serai ravie de pouvoir contribuer à vos futurs projets et mettre mes compétences au service d’une équipe dynamique.<br><br>
+
+Si vous souhaitez en apprendre davantage sur mon parcours, mes compétences ou mes projets, je vous invite à explorer ce site ou à télécharger mon CV.<br><br>
+
+Bonne lecture et à bientôt.
+</p>
+
                     <div class="hero-buttons">
                         <a href="#stages" class="btn btn-primary">Voir mes expériences</a>
                         <a href="#contact" class="btn btn-secondary">Me contacter</a>
@@ -1509,7 +89,7 @@
                 </div>
                 <div class="hero-image">
                     <div class="photo-container">
-                        <img src="Betul.jpg" alt="Photo de profil">
+                        <img src="bet.jpg" alt="Photo de profil">
                     </div>
                 </div>
             </div>
@@ -1703,7 +283,7 @@
         </div>
         <div class="diplomes-grid">
             <!-- Brevet avec flip -->
-            <div class="diplome-card-flip" data-group="diplomes">
+            <div class="diplome-card-flip" data-group="diplomes" onclick="this.classList.toggle('flipped')">
                 <div class="diplome-card-inner">
                     <div class="diplome-card-front">
                         <div class="diplome-icon">📚</div>
@@ -1722,7 +302,7 @@
             </div>
 
             <!-- Bac avec flip -->
-            <div class="diplome-card-flip" data-group="diplomes">
+            <div class="diplome-card-flip" data-group="diplomes" onclick="this.classList.toggle('flipped')">
                 <div class="diplome-card-inner">
                     <div class="diplome-card-front">
                         <div class="diplome-icon">🎓</div>
@@ -1734,14 +314,13 @@
                         </div>
                     </div>
                     <div class="diplome-card-back">
-                        <img src="bac.jpg" alt="Certificat Bac">
-                        <a href="bac.jpg" download="Bac_Betul.jpg" class="download-btn">📥 Télécharger</a>
+                        <p> Envoyer sur demande</p>
                     </div>
                 </div>
             </div>
 
             <!-- PIX avec flip -->
-            <div class="diplome-card-flip" data-group="diplomes">
+            <div class="diplome-card-flip" data-group="diplomes" onclick="this.classList.toggle('flipped')">
                 <div class="diplome-card-inner">
                     <div class="diplome-card-front">
                         <div class="diplome-icon">✅</div>
@@ -1767,7 +346,7 @@
     <div class="container">
         <div class="section-title">
             <h2>Certifications</h2>
-            <p>Survolez les cartes pour voir les certificats</p>
+            <p>Cliquez sur les cartes pour voir les certificats</p>
         </div>
         <div class="diplomes-grid">
             <!-- Cisco sans flip -->
@@ -1781,10 +360,9 @@
                 </div>
             </div>
 
-          
+         
 
-
-       <div class="diplome-card-flip">
+<div class="diplome-card-flip" data-group="diplomes" onclick="this.classList.toggle('flipped')">
     <div class="diplome-card-inner">
         <div class="diplome-card-front">
             <div class="diplome-icon">🏆</div>
@@ -1803,7 +381,7 @@
 </div>
 
             <!-- PSC1 avec flip -->
-            <div class="diplome-card-flip">
+            <div class="diplome-card-flip" data-group="diplomes" onclick="this.classList.toggle('flipped')">
                 <div class="diplome-card-inner">
                     <div class="diplome-card-front">
                         <div class="diplome-icon">🚑</div>
@@ -1822,15 +400,53 @@
             </div>
         </div>
     </div>
+		
+<section id="challenges">
+    <div class="container">
+        <div class="section-title">
+            <h2>Challenges️</h2>
+        </div>
+
+        <div class="cyber-container">
+            <div class="cyber-box challenge-card">
+                <div class="cyber-header">
+                    <span class="cyber-icon">⚔️</span>
+                    <span class="cyber-tag">Concours</span>
+                </div>
+                <h3>Passe ton Hack</h3>
+                <p>Participation en groupe aux éditions 2024-2025-2026. Résolution de challenges de type <strong>CTF</strong> : hacking éthique, cryptographie, Web, OSINT et analyse réseau.</p>
+                <div class="cyber-footer">
+                    <span>#Cybersécurité</span>
+                    <span>#EspritDEquipe</span>
+                </div>
+            </div>
+
+            <div class="cyber-box formation-card">
+                <div class="cyber-header">
+                    <span class="cyber-icon">🎓</span>
+                    <span class="cyber-tag ibm">Certification</span>
+                </div>
+                <h3>IBM SkillsBuild</h3>
+                <p>Formation <strong>Cybersecurity Fundamentals</strong>. Apprentissage des piliers de la sécurité : protection des données, menaces et défense des systèmes.</p>
+                <div class="cyber-footer">
+                    <span>#Cybersécurité</span>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>	
+	
+		
 <section id="bulletins">
     <div class="container">
         <div class="section-title">
             <h2>Résultats Scolaires</h2>
-            <p>Survolez les cartes pour voir les bulletins détaillés</p>
+            <p>Cliquez sur les cartes pour voir les bulletins détaillés</p>
         </div>
         <div class="diplomes-grid">
             
-            <div class="diplome-card-flip">
+           <div class="diplome-card-flip" data-group="diplomes" onclick="this.classList.toggle('flipped')">
                 <div class="diplome-card-inner">
                     <div class="diplome-card-front">
                         <div class="bulletin-header">
@@ -1849,7 +465,7 @@
                 </div>
             </div>
 
-            <div class="diplome-card-flip">
+           <div class="diplome-card-flip" data-group="diplomes" onclick="this.classList.toggle('flipped')">
                 <div class="diplome-card-inner">
                     <div class="diplome-card-front">
                         <div class="bulletin-header">
@@ -1868,17 +484,25 @@
                 </div>
             </div>
 
-            <div class="diplome-card" style="opacity: 0.8; border: 2px dashed #ccc;">
-                <div class="bulletin-header">
-                    <h3>Semestre 1</h3>
-                    <p>Deuxième année 2025-2026</p>
-                </div>
-                <div class="bulletin-content">
-                  
-                    <div class="bulletin-mention">Encouragement</div>
-                    <p style="margin-top: 15px; font-style: italic;">📄 Bulletin à venir</p>
+              <div class="diplome-card-flip" data-group="diplomes" onclick="this.classList.toggle('flipped')">
+                <div class="diplome-card-inner">
+                    <div class="diplome-card-front">
+                        <div class="bulletin-header">
+                            <h3>Semestre 1</h3>
+                            <p>Deuxième année 2026</p>
+                        </div>
+                        <div class="bulletin-content">
+                           
+                            <div class="bulletin-mention" style="color: #27ae60; font-weight: bold;">Félicitations</div>
+                        </div>
+                    </div>
+                    <div class="diplome-card-back">
+                        <img src="BULL_3S.jpg" alt="Bulletin Semestre 2">
+						<a href="BULL_3S.jpg" download="Bulletin_S1_Betul.jpg" class="download-btn">📥 Télécharger</a>
+                    </div>
                 </div>
             </div>
+
 
         </div>
     </div>
@@ -2052,7 +676,58 @@
         </div>
 		
 		
-		
+	<!-- Section Engagements & Responsabilités -->
+<section id="engagements">
+    <div class="container">
+        <div class="section-title">
+            <h2>Engagements & Responsabilités</h2>
+            <p>Mes implications au sein de l'établissement</p>
+        </div>
+        
+        <div class="engagements-grid">
+            <!-- Déléguée Suppléante -->
+            <div class="engagement-card">
+                <div class="engagement-icon">🎓</div>
+                <div class="engagement-content">
+                    <h3>Déléguée Suppléante de Classe</h3>
+                    <p class="engagement-period">2025 - 2026 | BTS CIEL 2ème année</p>
+                    <p class="engagement-description">
+                        Élue déléguée suppléante de ma classe de BTS CIEL. Rôle actif dans la représentation des étudiants et participation aux conseils de classe en l'absence du délégué titulaire.
+                    </p>
+                    <div class="engagement-missions">
+                        <h4>Missions & Responsabilités :</h4>
+                        <ul>
+                            <li>Représentation des étudiants lors des conseils de classe</li>
+                            <li>Relais entre l'administration et les élèves</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portes Ouvertes -->
+            <div class="engagement-card">
+                <div class="engagement-icon">🏫</div>
+                <div class="engagement-content">
+                    <h3>Engagement élève</h3>
+                    <p class="engagement-period">2024/2025 - 2025/2026| Portes Ouvertes & JPO</p>
+                    <p class="engagement-description">
+                        Participation active aux Portes Ouvertes et Journées Portes Ouvertes universitaires pour présenter le lycée Heinrich Nessel et la formation BTS CIEL aux futurs étudiants et leurs familles.
+                    </p>
+                    <div class="engagement-missions">
+                        <h4>Missions & Actions :</h4>
+                        <ul>
+                            <li>Présentation de la formation BTS CIEL Informatique & Réseaux</li>
+                            <li>Accueil et orientation des visiteurs</li>
+                            <li>Témoignage sur le parcours étudiant et les débouchés</li>
+                            <li>Démonstration des projets et équipements du BTS CIEL IR - ER</li>
+                            <li>Réponse aux questions des lycéens et parents</li>
+                        </ul>
+              
+                </div>
+            </div>
+        </div>
+    </div>
+</section>	
 		
 		
 		
@@ -2076,17 +751,18 @@
         
 
         <div class="projet-controls">
-            <h4>Commandes :</h4>
+            <center> <h4>Commandes :</h4>
             <div class="control-grid">
+			
                 <div class="control-item"><strong>J1 (Gauche) :</strong> Z / W</div>
                 <div class="control-item"><strong>J2 (Droite) :</strong> ↑ / ↓</div>
                 <div class="control-item"><strong>Reset :</strong> Touche S</div>
-            </div>
+            </div></center>
         </div>
 
         <div class="projet-tech">
-            <span>JavaScript</span>
-            <span>Canvas API</span>
+            <span>JavaScript / Canvas API / HTML / CSS / Cancas API</span>
+            
         </div>
         <a href="file:///C:/Users/Betul/Documents/BTS%20CIEL%20IR%20-%20Premi%C3%A8re%20Ann%C3%A9e%202024_2025/Informatique_Didier_ciel1/Introduction_JavaScript/Jeux_Pong_JS/Cr%C3%A9ation%20-%20jeux%20pong/pong2.html" target="_blank" class="projet-link">Lancer le jeu</a>
 
@@ -2100,8 +776,8 @@
         <h3>Convertisseur Hexa</h3>
         <p>Un outil pratique pour convertir instantanément des valeurs entre le système décimal et hexadécimal.</p>
         <div class="projet-tech">
-            <span>HTML/CSS</span>
-            <span>JS</span>
+            <span>HTML / CSS / JavaScript / C++</span>
+            
         </div>
         <a href="https://convertisseur-de-base.neocities.org/" target="_blank" class="projet-link">Lancer sur le Web</a>
     </div>
@@ -2225,7 +901,7 @@
             <h2>Mon Curriculum Vitae</h2>
             <p>Téléchargez mon CV en format PDF</p>
         </div>
-        <a href="BETUL_CV_2026.pdf" target="_blank" download class="btn-download-cv">
+        <a href="Betull_cv_2026.pdf" target="_blank" download class="btn-download-cv">
             📄 Télécharger mon CV (PDF)
         </a>
     </div>
@@ -2246,7 +922,7 @@
                         <div class="contact-info-icon">📧</div>
                         <div class="contact-info-text">
                             <span class="contact-info-label">Email</span>
-                            <span class="contact-info-value"><a href="mailto:betsanane@icloud.com">Betularti@icloud.com</a></span>
+                            <span class="contact-info-value"><a href="/cdn-cgi/l/email-protection#0567607176646b646b60456c66696a70612b666a68"><span class="__cf_email__" data-cfemail="185a7d6c6d74796a6c7158717b74776d7c367b7775">[email&#160;protected]</span></a></span>
                         </div>
                     </div>
 
@@ -2268,94 +944,4 @@
                 </div>
 				
 					<div class="social-links">
-					<a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
-					 🔗 <p>LinkeDIn</p></a>
-
-</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 ARTI Betul - Portfolio étudiant</p>
-    </footer>
-<script>
-    // Smooth scroll pour les liens de navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // Animation au scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.competence-card, .stage-card, .activite-card, .bulletin-card, .diplome-card, .projet-card').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-
-    // Active link dans la navigation
-    window.addEventListener('scroll', () => {
-        let current = '';
-        const sections = document.querySelectorAll('section');
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 150) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.style.color = '';
-            if (link.getAttribute('href').slice(1) === current) {
-                link.style.color = 'var(--secondary)';
-            }
-        });
-    });
-
-    // Gestion du clic sur les cartes diplômes - ferme les autres du même groupe
-    document.querySelectorAll('.diplome-card-flip').forEach(card => {
-        card.addEventListener('click', function() {
-            const group = this.getAttribute('data-group');
-            
-            // Ferme toutes les autres cartes du même groupe
-            document.querySelectorAll(`.diplome-card-flip[data-group="${group}"]`).forEach(otherCard => {
-                if (otherCard !== this) {
-                    otherCard.classList.remove('flipped');
-                }
-            });
-            
-            // Toggle la carte cliquée
-            this.classList.toggle('flipped');
-        });
-    });
-</script>
-</body>
-</html>
+					<a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer" class="social-link"
