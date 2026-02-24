@@ -1,11 +1,4 @@
 /* ==========================================
-   PORTFOLIO BETUL ARTI - CSS COMPLET
-   Fichier : style.css
-   Description : Tous les styles du portfolio
-   Auteur : Betul ARTI
-   Date : Février 2026
-   ========================================== */
-   /* ==========================================
    EFFET BULLES + TRANSITION PENCHÉE
    ========================================== */
 
@@ -362,10 +355,12 @@ nav {
         }
 
         .hero-text p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            font-weight: 300;
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            text-align: justify;
+            font-weight: 400;
         }
 
         .hero-buttons {
@@ -2270,3 +2265,52 @@ nav {
         height: 150px;
     }
 }
+/* ==========================================
+   INDICATEUR DE CLIC SUR LES CARTES
+   ========================================== */
+
+.diplome-card-flip {
+    position: relative;
+}
+
+/* Badge "Cliquez pour voir" */
+.click-indicator {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--secondary);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 10;
+    pointer-events: none;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(196, 168, 130, 0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(196, 168, 130, 0.5);
+    }
+}
+
+/* Cacher l'indicateur quand la carte est retournée */
+.diplome-card-flip.flipped .click-indicator {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Icône de main qui pointe */
+.click-indicator::before {
+    content: '👆 ';
+    font-size: 1rem;
+}
+
+

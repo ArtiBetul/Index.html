@@ -116,4 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Message de confirmation
     console.log('✅ Portfolio chargé!');
+	
+	
+	
 });
