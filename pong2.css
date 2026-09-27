@@ -1,0 +1,94 @@
+/* Corps de la page, centre tout le contenu et ajoute un fond bleu foncé */
+body {
+    margin: 0; /* Supprime les marges par défaut du corps de la page */
+    padding: 0; /* Supprime les espacements internes par défaut */
+    display: flex; /* Utilise Flexbox pour le positionnement du contenu */
+    justify-content: center; /* Centre horizontalement le contenu */
+    align-items: center; /* Centre verticalement le contenu */
+    height: 100vh; /* Prend toute la hauteur visible de l'écran */
+    background-color: #104c91; /* Applique un fond bleu foncé */
+    font-family: Arial, sans-serif; /* Définit une police simple et lisible */
+}
+
+/* Conteneur principal pour le jeu */
+#gameContainer {
+    position: relative; /* Permet un positionnement absolu des éléments enfants comme le bouton ou les messages */
+}
+
+/* Le canevas où le jeu se passe */
+#gameCanvas {
+    background-color: #1d3a6d; /* Donne une couleur de fond bleue plus douce pour le canevas */
+    border: 2px solid #efc9af; /* Entoure le canevas d'une bordure rose pâle */
+    box-shadow: 0 0 15px #efc9af; /* Crée un effet de halo lumineux rose autour du canevas */
+}
+
+ #gameCanvas {
+            width: 600px;        /* Largeur réduite du terrain */
+            height: 450px;       /* Hauteur réduite du terrain */
+        }
+
+/* Affichage du score */
+#scoreDisplay {
+    color: #efc9af; /* Le texte du score est en rose pâle */
+    text-align: center; /* Centre horizontalement le score */
+    font-size: 24px; /* Agrandit la taille du texte du score */
+    margin-bottom: 10px; /* Ajoute un espace sous le score */
+}
+
+/* Titre du jeu */
+#gameTitle {
+    color: #efc9af; /* Texte en rose pâle */
+    text-align: center; /* Centre horizontalement le titre */
+    font-size: 48px; /* Grande taille de police pour le titre */
+    font-weight: bold; /* Rend le texte du titre en gras */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6), 0 0 15px #efc9af; /* Ombre noire douce + halo rose pour le style */
+    margin-bottom: 20px; /* Espace sous le titre */
+    font-family: 'Arial', sans-serif; /* Utilise une police sans serif */
+    letter-spacing: 2px; /* Espacement des lettres pour un effet graphique */
+}
+
+/* Bouton de démarrage du jeu */
+#startButton {
+    position: absolute; /* Positionné de façon absolue dans le conteneur */
+    top: 50%; /* Positionne le haut du bouton au milieu du conteneur */
+    left: 50%; /* Positionne la gauche du bouton au centre du conteneur */
+    transform: translate(-50%, -50%); /* Décale le bouton pour un centrage parfait */
+    padding: 10px 20px; /* Espace intérieur du bouton (haut/bas, gauche/droite) */
+    font-size: 16px; /* Taille de texte du bouton */
+    background-color: #efc9af; /* Fond rose pâle du bouton */
+    color: #104c91; /* Texte en bleu foncé pour bon contraste */
+    border: none; /* Supprime les bordures natives du bouton */
+    border-radius: 5px; /* Coins arrondis pour un style plus doux */
+    cursor: pointer; /* Affiche un pointeur interactif au survol */
+    box-shadow: 0 0 15px #efc9af; /* Halo lumineux autour du bouton */
+}
+
+/* Zone de message (ex : fin du jeu) */
+#messageDisplay {
+    position: absolute; /* Positionnement absolu pour centrage */
+    top: 50%; /* Centre verticalement */
+    left: 50%; /* Centre horizontalement */
+    transform: translate(-50%, -50%); /* Décalage pour un centrage parfait */
+    width: 80%; /* Largeur de 80% du conteneur parent */
+    text-align: center; /* Centre le texte */
+    display: none; /* Caché par défaut, s'affichera dynamiquement */
+    color: #efc9af; /* Texte en rose pâle */
+}
+
+/* Image dans le message (si elle existe) */
+#messageDisplay img {
+    max-width: 100%; /* L’image ne dépasse pas la largeur du conteneur */
+    max-height: 250px; /* Hauteur maximale de l’image pour éviter qu’elle prenne trop de place */
+}
+
+/* Ligne centrale qui sépare la table des deux joueurs */
+#gameCanvas::before {
+    content: ''; /* Crée un pseudo-élément vide */
+    position: absolute; /* Permet de placer précisément la ligne */
+    top: 0; /* Aligne en haut du canevas */
+    left: 50%; /* Positionne au centre horizontal du canevas */
+    width: 2px; /* Largeur fine de la ligne */
+    height: 100%; /* Ligne s’étendant sur toute la hauteur du canevas */
+    background-color: #efc9af; /* Couleur rose pâle pour la ligne */
+    box-shadow: 0 0 15px #efc9af; /* Effet lumineux autour de la ligne */
+}

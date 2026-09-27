@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8"> <!-- Encodage des caractères en UTF-8 -->
+    <title>Balles Perdues</title> <!-- Titre affiché dans l’onglet du navigateur -->
+    <link rel="stylesheet" href="pong2.css"> <!-- Feuille de style externe -->
+</head>
+<body>
+    <div id="gameContainer">
+        <!-- Titre du jeu -->
+        <div id="gameTitle">Balles Perdues</div>
+
+        <!-- Affichage du score -->
+        <div id="scoreDisplay">0 : 0</div>
+
+        <!-- Zone de dessin pour le jeu -->
+        <canvas id="gameCanvas" width="640" height="480"></canvas>
+
+        <!-- Bouton pour démarrer la partie -->
+        <button id="startButton">Commencer</button>
+
+        <!-- Zone pour afficher des messages (victoire, défaite, etc.) -->
+        <div id="messageDisplay"></div>
+    </div>
+
+    <!-- Script JavaScript du jeu -->
+    <script src="pong2.JS"></script>
+</body>
+</html>
