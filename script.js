@@ -114,6 +114,53 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // ==========================================
+    // UNE CARTE SUR DEUX AVEC UNE LUMIÈRE BLANCHE FIXE
+    // ==========================================
+    // Liste des groupes de cartes
+    const groupesDeCartes = [
+        '.competence-card',
+        '.timeline-content',
+        '.diplome-card-flip',
+        '.stage-card',
+        '.activite-card',
+        '.engagement-card',
+        '.projet-card',
+        '.cyber-box',
+        '.covaciel-column'
+    ];
+
+    // Pour chaque groupe...
+    groupesDeCartes.forEach(groupe => {
+        // ...on prend toutes les cartes du groupe
+        document.querySelectorAll(groupe).forEach((carte, numero) => {
+            // numero = 0, 1, 2, 3...
+            // Si le numéro est impair (1, 3, 5...) => lumière blanche
+            // Sinon la carte garde la lumière dorée
+            if (numero % 2 === 1) {
+                carte.classList.add('glow-white');
+            }
+        });
+    });
+
+    // ==========================================
+    // LUMIÈRE QUI SUIT LA SOURIS SUR LES CARTES
+    // ==========================================
+    // Quand la souris bouge sur une carte,
+    // on calcule où elle est (en %) et on le donne au CSS (--mx et --my)
+    document.querySelectorAll('.competence-card, .timeline-content, .stage-card, .activite-card, .engagement-card, .projet-card, .cyber-box').forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            this.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100) + '%');
+            this.style.setProperty('--my', ((e.clientY - rect.top) / rect.height * 100) + '%');
+            this.classList.add('glow-spot');
+        });
+        // Quand la souris sort de la carte, on enlève la lumière
+        card.addEventListener('mouseleave', function() {
+            this.classList.remove('glow-spot');
+        });
+    });
+
     // Message de confirmation
     console.log('✅ Portfolio chargé!');
 	
