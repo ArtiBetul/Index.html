@@ -2038,12 +2038,13 @@ nav {
     color: white;
     font-size: 1.15rem;
     font-weight: 600;
+    letter-spacing: 0.3px;
     text-decoration: none;
-    border-radius: 50px;
-    
+    border-radius: 10px;
+
     /* Ombres et effets */
     box-shadow: 0 8px 25px rgba(139, 115, 85, 0.3);
-    border: 2px solid transparent;
+    border: 2px solid var(--primary);
     position: relative;
     overflow: hidden;
     
