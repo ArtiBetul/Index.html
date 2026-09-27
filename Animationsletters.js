@@ -36,13 +36,26 @@ document.addEventListener('DOMContentLoaded', function() {
             animateText(word, 2 + index * 0.3);
         });
         
-        // Faire disparaître l'écran après l'animation
-        setTimeout(() => {
+        // Faire disparaître l'écran après l'animation (automatiquement après 5s)
+        function fermerEcranAccueil() {
             welcomeScreen.style.animation = 'fadeOutScreen 1s forwards';
             setTimeout(() => {
                 welcomeScreen.style.display = 'none';
             }, 1000);
-        }, 5000);
+        }
+
+        const timerAuto = setTimeout(fermerEcranAccueil, 5000);
+
+        // Clic n'importe où sur l'écran = passer directement au portfolio
+        welcomeScreen.addEventListener('click', function() {
+            clearTimeout(timerAuto);  // annule la fermeture automatique
+            welcomeScreen.style.animation = 'none';
+            welcomeScreen.style.transition = 'opacity 0.4s ease';
+            welcomeScreen.style.opacity = '0';
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+            }, 400);
+        });
     }
 });
 
