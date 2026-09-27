@@ -64,17 +64,18 @@
     /* Nouvelles couleurs pour chaque item du menu */
     --nav-color-1: #8b7355;   /* Accueil - Marron */
     --nav-color-2: #a67c52;   /* Compétences - Marron clair */
-    --nav-color-3: #c4a882;   /* Études - Beige */
-    --nav-color-4: #d4a574;   /* Diplômes - Doré */
-    --nav-color-5: #b89968;   /* Certifications - Beige doré */
-    --nav-color-6: #9b8470;   /* Challenges - Marron gris */
-    --nav-color-7: #8b7355;   /* Bulletins - Marron */
-    --nav-color-8: #a67c52;   /* Stages - Marron clair */
-    --nav-color-9: #c4a882;   /* Activités - Beige */
-    --nav-color-10: #d4a574;  /* Engagements - Doré */
-    --nav-color-11: #b89968;  /* Projets - Beige doré */
-    --nav-color-12: #9b8470;  /* CV - Marron gris */
-    --nav-color-13: #8b7355;  /* Contact - Marron */
+    --nav-color-3: #c4a882;   /* Langues - Beige */
+    --nav-color-4: #d4a574;   /* Études - Doré */
+    --nav-color-5: #b89968;   /* Diplômes - Beige doré */
+    --nav-color-6: #9b8470;   /* Certifications - Marron gris */
+    --nav-color-7: #8b7355;   /* Challenges - Marron */
+    --nav-color-8: #a67c52;   /* Bulletins - Marron clair */
+    --nav-color-9: #c4a882;   /* Stages - Beige */
+    --nav-color-10: #d4a574;  /* Activités - Doré */
+    --nav-color-11: #b89968;  /* Engagements - Beige doré */
+    --nav-color-12: #9b8470;  /* Projets - Marron gris */
+    --nav-color-13: #8b7355;  /* CV - Marron */
+    --nav-color-14: #a67c52;  /* Contact - Marron clair */
 }
 
 /* Style du body (corps de la page) */
@@ -185,6 +186,7 @@ nav {
 .nav-links li:nth-child(11) a.active { background: var(--nav-color-11); color: white; border-color: var(--nav-color-11); }
 .nav-links li:nth-child(12) a.active { background: var(--nav-color-12); color: white; border-color: var(--nav-color-12); }
 .nav-links li:nth-child(13) a.active { background: var(--nav-color-13); color: white; border-color: var(--nav-color-13); }
+.nav-links li:nth-child(14) a.active { background: var(--nav-color-14); color: white; border-color: var(--nav-color-14); }
 
 /* Effet supplémentaire pour lien actif */
 .nav-links a.active {
@@ -417,6 +419,7 @@ nav {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center 30%;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.15);
             position: relative;
@@ -472,19 +475,79 @@ nav {
             background: var(--light);
         }
 
-        .competences-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
+        /* Section Langues (indépendante des Compétences) */
+        #langues {
+            background: white;
+            min-height: auto;
+            padding: 60px 0 60px;
         }
 
-        .competences-grid-bottom {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            max-width: 680px;
+        .langues-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
             margin: 0 auto;
+        }
+
+        .langue-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 1.8rem 1.2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--secondary);
+        }
+
+        .langue-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-top-color: var(--accent);
+        }
+
+        .langue-nom {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .langue-niveau {
+            display: inline-block;
+            background: rgba(212, 196, 176, 0.25);
+            color: var(--text);
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 900px) {
+            .langues-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .langues-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .competences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Petite note descriptive dans une carte de compétence (ex: hébergement Raspberry Pi 400) */
+        .competence-note {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            font-style: italic;
         }
 
         .competence-card {
@@ -622,8 +685,8 @@ nav {
         /* Diplômes Section */
         .diplomes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
         }
 
         .diplome-card {
@@ -642,30 +705,38 @@ nav {
         }
 
         .diplome-icon {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
         }
 
         .diplome-content h3 {
             font-size: 1.3rem;
             color: var(--primary);
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
             text-align: center;
+            min-height: 2.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .diplome-etablissement {
             color: var(--secondary);
             font-weight: 600;
             text-align: center;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
+            min-height: 2.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .diplome-date {
             color: var(--text-light);
             font-size: 0.9rem;
             text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             font-style: italic;
         }
 
@@ -684,7 +755,7 @@ nav {
 .diplome-card-inner {
     position: relative;
     width: 100%;
-    min-height: 350px;
+    min-height: 440px;
     transition: transform 0.6s;
     transform-style: preserve-3d;
 }
@@ -704,6 +775,7 @@ nav {
     background: white;
     box-shadow: 0 5px 20px rgba(0,0,0,0.08);
     padding: 2rem;
+    overflow-y: hidden;
     border-top: 4px solid var(--secondary);
 }
 
@@ -760,7 +832,7 @@ nav {
 .diplome-card-inner {
     position: relative;
     width: 100%;
-    min-height: 350px;
+    min-height: 440px;
     transition: transform 0.6s;
     transform-style: preserve-3d;
 }
@@ -780,6 +852,7 @@ nav {
     background: white;
     box-shadow: 0 5px 20px rgba(0,0,0,0.08);
     padding: 2rem;
+    overflow-y: hidden;
     border-top: 4px solid var(--secondary);
 }
 
@@ -996,8 +1069,14 @@ nav {
 
         .activites-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 1200px) {
+            .activites-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .activite-card {
@@ -1318,11 +1397,6 @@ nav {
                 grid-template-columns: 1fr;
             }
 
-            .competences-grid-bottom {
-                flex-direction: column;
-                max-width: 100%;
-            }
-
             .timeline::before {
                 left: 0;
             }
@@ -1478,110 +1552,109 @@ nav {
 
 /* Projet CoVACIEL - Grande carte */
 .projet-covaciel {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-radius: 25px;
-    padding: 3rem;
-    margin-top: 3rem;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    border: 2px solid var(--secondary);
+    background: #fdfcfb;
+    border-radius: 20px;
+    padding: 1.75rem;
+    margin-top: 2rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
 }
 
 .projet-badge-large {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: var(--secondary);
     color: white;
-    padding: 0.8rem 2rem;
-    border-radius: 30px;
+    padding: 6px 15px;
+    border-radius: 20px;
     font-weight: bold;
     display: inline-block;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    margin-bottom: 1.2rem;
+    font-size: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .covaciel-header {
     display: flex;
     align-items: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
 }
 
 .projet-icon-large {
-    font-size: 4.5rem;
+    font-size: 2.5rem;
 }
 
 .covaciel-header h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     color: var(--primary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
 }
 
 .covaciel-subtitle {
     color: var(--text-light);
-    font-size: 1.15rem;
+    font-size: 0.95rem;
     font-weight: 400;
 }
 
 .covaciel-description {
-    background: white;
-    padding: 1.8rem;
-    border-radius: 15px;
-    margin-bottom: 2.5rem;
-    border-left: 5px solid var(--accent);
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    background: var(--light);
+    padding: 1.2rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--accent);
 }
 
 .covaciel-description p {
     margin: 0;
-    line-height: 1.8;
+    line-height: 1.6;
     color: var(--text);
-    font-size: 1.05rem;
+    font-size: 0.95rem;
 }
 
 .covaciel-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-bottom: 2rem;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
 }
 
 .covaciel-column {
     background: white;
-    padding: 1.8rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    padding: 1.2rem;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
 }
 
 .covaciel-column.piste {
-    border-top: 4px solid #3498db;
+    border-top: 3px solid #3498db;
 }
 
 .covaciel-column.voiture {
-    border-top: 4px solid #e74c3c;
+    border-top: 3px solid #e74c3c;
 }
 
 .covaciel-column.ma-partie {
-    border-top: 4px solid #2ecc71;
+    border-top: 3px solid #2ecc71;
     background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
 }
 
 .column-title {
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: var(--primary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     text-align: center;
     font-weight: 600;
-    padding-bottom: 1rem;
+    padding-bottom: 0.7rem;
     border-bottom: 2px solid rgba(0,0,0,0.05);
 }
 
 .candidate-block {
     background: var(--light);
-    padding: 1.2rem;
-    border-radius: 12px;
-    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border-radius: 10px;
+    margin-bottom: 0.7rem;
     display: flex;
-    gap: 1rem;
+    gap: 0.7rem;
     transition: all 0.3s;
     border: 1px solid transparent;
 }
@@ -1600,14 +1673,14 @@ nav {
 .candidate-num {
     background: var(--primary);
     color: white;
-    width: 45px;
-    height: 45px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     flex-shrink: 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
@@ -1619,23 +1692,97 @@ nav {
 .candidate-content strong {
     display: block;
     color: var(--primary);
-    margin-bottom: 0.4rem;
-    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
 }
 
 .candidate-content p {
     color: var(--text-light);
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 0.8rem;
+    line-height: 1.5;
     margin: 0;
 }
 
 .covaciel-footer {
-    background: white;
-    padding: 1.8rem;
-    border-radius: 15px;
+    background: var(--light);
+    padding: 1.2rem;
+    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+/* Journal de bord du projet CoVACIEL */
+.covaciel-journal {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: linear-gradient(135deg, #fff8ee 0%, #f5ebd8 100%);
+    border: 2px solid var(--accent);
+    border-radius: 18px;
+    padding: 1.8rem 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 20px rgba(139, 115, 85, 0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.covaciel-journal:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(139, 115, 85, 0.2);
+}
+
+.journal-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+    background: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.journal-content {
+    flex: 1;
+}
+
+.journal-content h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin-bottom: 0.4rem;
+}
+
+.journal-content p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.journal-btn {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 0.9rem 1.8rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(139, 115, 85, 0.3);
+    transition: all 0.3s;
+}
+
+.journal-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 115, 85, 0.4);
+}
+
+@media (max-width: 768px) {
+    .covaciel-journal {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 
 .covaciel-footer p {
@@ -2056,6 +2203,7 @@ nav {
     z-index: 9999;
     overflow: hidden;
     animation: fadeOutWelcome 1s ease-in-out 4s forwards;
+    cursor: pointer;
 }
 
 /* Animation de disparition de l'écran de bienvenue */
@@ -2311,4 +2459,395 @@ nav {
 .click-indicator::before {
     content: '👆 ';
     font-size: 1rem;
+}
+
+/* ==========================================
+   CONTOURS LUMINEUX
+   - cartes dorées : la lumière tourne au survol
+   - une carte sur deux : lumière blanche fixe
+   ========================================== */
+
+/* Variable "angle" qu'on peut animer :
+   c'est elle qui fait tourner la lumière autour des cartes */
+@property --glow-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+/* Les couleurs de la lumière (change-les ici si tu veux) */
+:root {
+    --glow-1: #ffd9a0;                       /* doré clair */
+    --glow-2: #d4a574;                       /* doré */
+    --glow-3: #8b7355;                       /* marron */
+    --glow-soft: rgba(212, 165, 116, 0.45);  /* halo doré léger */
+    --glow-strong: rgba(255, 200, 120, 0.7); /* halo doré fort */
+    --silver: #c3cee3;                       /* blanc argenté (pour que le blanc se voie sur le fond clair) */
+}
+
+/* Animation : la lumière fait un tour complet */
+@keyframes glow-spin {
+    to { --glow-angle: 360deg; }
+}
+
+/* Animation : le halo grossit puis rétrécit (comme une respiration) */
+@keyframes glow-breathe {
+    0%, 100% { box-shadow: 0 0 10px var(--glow-soft), 0 0 25px rgba(212,165,116,0.15); }
+    50%      { box-shadow: 0 0 18px var(--glow-strong), 0 0 45px rgba(212,165,116,0.35); }
+}
+
+
+/* ---------- 1. MÊME TAILLE POUR TOUTES LES CASES ---------- */
+
+/* Dans chaque grille, toutes les lignes ont la même hauteur
+   => toutes les cases ont la même taille */
+.competences-grid,
+.diplomes-grid,
+.bulletins-grid,
+.projets-grid,
+.activites-grid,
+.engagements-grid,
+.cyber-container {
+    grid-auto-rows: 1fr;
+}
+
+/* Les cases prennent toute la hauteur de leur ligne */
+.competence-card,
+.projet-card,
+.activite-card,
+.engagement-card,
+.cyber-box {
+    height: 100%;
+}
+
+
+/* ---------- 2. CASES QU'ON CLIQUE : elles grossissent au lieu de bouger ---------- */
+
+/* Les cartes à retourner ne montent plus et ne descendent plus */
+.diplome-card-flip,
+.stage-card-flip {
+    transform: none !important;
+    transition: transform 0.4s ease;
+    position: relative;
+}
+
+/* Une fois cliquée (retournée), la carte grossit un peu et passe devant les autres */
+.diplome-card-flip.flipped,
+.stage-card-flip.flipped {
+    transform: scale(1.06) !important;
+    z-index: 20;
+}
+
+/* La carte de stage qui contient une carte à retourner ne glisse plus sur le côté */
+.stage-card:hover {
+    transform: none;
+}
+
+
+/* ---------- 3. CONTOUR DORÉ QUI TOURNE (au survol) ---------- */
+
+/* Les cartes doivent être en "relative" pour que le contour se place dessus
+   (pas les faces des diplômes : elles sont déjà en "absolute" pour le retournement) */
+.competence-card,
+.timeline-content,
+.stage-card,
+.activite-card,
+.engagement-card,
+.projet-card,
+.cyber-box,
+.covaciel-journal,
+.covaciel-column {
+    position: relative;
+}
+
+/* Le contour : un anneau de lumière posé sur le bord de la carte.
+   Caché au départ, il apparaît et tourne quand on passe la souris. */
+.competence-card::after,
+.timeline-content::after,
+.stage-card::after,
+.activite-card::after,
+.engagement-card::after,
+.projet-card::after,
+.cyber-box::after,
+.covaciel-journal::after,
+.covaciel-column::after,
+.diplome-card-front::after,
+.diplome-card-back::after {
+    content: '';
+    position: absolute;
+    inset: 0;                     /* prend toute la carte */
+    border-radius: inherit;       /* mêmes coins arrondis que la carte */
+    padding: 2px;                 /* épaisseur du contour */
+    /* un morceau de lumière dorée qui fait le tour */
+    background: conic-gradient(from var(--glow-angle),
+                transparent 0deg,
+                var(--glow-2) 60deg,
+                var(--glow-1) 90deg,
+                var(--glow-2) 120deg,
+                transparent 180deg,
+                transparent 360deg);
+    /* ces 3 lignes vident le milieu : on ne garde que le bord */
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    opacity: 0;                   /* caché au départ */
+    pointer-events: none;         /* ne bloque pas les clics */
+    z-index: 5;
+    transition: opacity 0.4s ease;
+    animation: glow-spin 3s linear infinite;
+    animation-play-state: paused; /* en pause au départ */
+}
+
+/* Au survol : le contour apparaît et tourne */
+.competence-card:hover::after,
+.timeline-content:hover::after,
+.stage-card:hover::after,
+.activite-card:hover::after,
+.engagement-card:hover::after,
+.projet-card:hover::after,
+.cyber-box:hover::after,
+.covaciel-journal:hover::after,
+.covaciel-column:hover::after,
+.diplome-card-flip:hover .diplome-card-front::after,
+.diplome-card-flip:hover .diplome-card-back::after {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+/* Au survol : halo doré autour de la carte */
+.competence-card:hover,
+.timeline-content:hover,
+.stage-card:hover,
+.activite-card:hover,
+.engagement-card:hover,
+.projet-card:hover,
+.cyber-box:hover,
+.covaciel-journal:hover,
+.covaciel-column:hover {
+    box-shadow: 0 0 0 1px rgba(212,165,116,0.35),
+                0 0 25px rgba(212,165,116,0.35),
+                0 10px 35px rgba(139,115,85,0.18) !important;
+}
+
+.diplome-card-flip:hover .diplome-card-front,
+.diplome-card-flip:hover .diplome-card-back {
+    box-shadow: 0 0 25px rgba(212,165,116,0.4), 0 10px 30px rgba(139,115,85,0.15);
+}
+
+/* Petite lumière qui suit la souris dans la carte
+   (--mx et --my = position de la souris, calculée dans script.js) */
+.glow-spot {
+    background-image: radial-gradient(
+        260px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 217, 160, 0.22),
+        transparent 70%) !important;
+}
+
+
+/* ---------- 4. UNE CARTE SUR DEUX : LUMIÈRE BLANCHE FIXE ---------- */
+/* script.js met la classe "glow-white" sur une carte sur deux.
+   Ces cartes ont un bord blanc lumineux qui ne bouge pas. */
+
+/* Bord blanc + halo blanc/argenté, toujours allumé, sans animation */
+.glow-white,
+.glow-white .diplome-card-front,
+.glow-white .diplome-card-back {
+    box-shadow: 0 0 0 2px #fff,                    /* bord blanc */
+                0 0 22px 6px var(--silver),         /* halo lumineux */
+                0 8px 25px rgba(139,115,85,0.12) !important; /* petite ombre */
+}
+
+/* Sur les cartes blanches, pas de lumière qui tourne */
+.glow-white::after,
+.glow-white .diplome-card-front::after,
+.glow-white .diplome-card-back::after {
+    display: none;
+}
+
+/* La carte diplôme elle-même ne brille pas : ce sont ses faces qui brillent */
+.diplome-card-flip.glow-white {
+    box-shadow: none !important;
+}
+
+
+/* ---------- 5. GRANDE CARTE CoVACIEL : toujours allumée ---------- */
+
+.projet-covaciel {
+    position: relative;
+    border: none;
+    animation: glow-breathe 4s ease-in-out infinite;  /* halo qui respire */
+}
+
+/* Contour doré qui tourne en continu */
+.projet-covaciel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(from var(--glow-angle),
+                var(--glow-3), var(--glow-2), var(--glow-1),
+                var(--glow-2), var(--glow-3), var(--glow-2),
+                var(--glow-1), var(--glow-2), var(--glow-3));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    animation: glow-spin 6s linear infinite;
+    pointer-events: none;
+}
+
+/* Colonne "Ma partie" : petit halo vert */
+.covaciel-column.ma-partie {
+    box-shadow: 0 0 0 1px rgba(46,204,113,0.35), 0 0 18px rgba(46,204,113,0.25);
+}
+
+
+/* ---------- 6. PHOTO DE PROFIL : anneau doré qui tourne ---------- */
+
+.photo-container::after {
+    content: '';
+    position: absolute;
+    inset: -6px;                  /* un peu plus grand que la photo */
+    border-radius: 26px;
+    padding: 3px;
+    background: conic-gradient(from var(--glow-angle),
+                transparent, var(--glow-2), var(--glow-1), var(--glow-2), transparent 50%,
+                transparent 50%, var(--glow-2), var(--glow-1), var(--glow-2), transparent);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    animation: glow-spin 4s linear infinite;
+    filter: drop-shadow(0 0 6px var(--glow-strong));
+    z-index: 3;
+    pointer-events: none;
+}
+
+.photo-container img {
+    box-shadow: 0 0 30px rgba(212,165,116,0.45), 0 20px 60px rgba(0,0,0,0.15);
+}
+
+
+/* ---------- 7. BOUTONS : halo qui respire ---------- */
+
+.btn-download-cv,
+.journal-btn,
+.projet-link,
+.download-btn,
+.btn-primary {
+    animation: glow-breathe 3s ease-in-out infinite;
+}
+
+/* Au survol : le bouton s'allume fort */
+.btn-download-cv:hover,
+.journal-btn:hover,
+.projet-link:hover,
+.download-btn:hover,
+.btn-primary:hover,
+.btn-secondary:hover {
+    box-shadow: 0 0 12px var(--glow-1),
+                0 0 30px var(--glow-strong),
+                0 0 60px rgba(212,165,116,0.4) !important;
+    animation-play-state: paused;
+}
+
+
+/* ---------- 8. MENU ---------- */
+
+/* Onglet de la section où on se trouve */
+.nav-links a.active {
+    box-shadow: 0 0 8px var(--glow-soft),
+                0 0 18px rgba(212,165,116,0.35) !important;
+}
+
+/* Onglet survolé */
+.nav-links a:hover {
+    box-shadow: 0 0 10px rgba(212,165,116,0.35);
+    border-color: var(--glow-2);
+}
+
+
+/* ---------- 9. TITRES : trait néon qui défile ---------- */
+
+.section-title h2::after {
+    background: linear-gradient(90deg, var(--glow-3), var(--glow-1), var(--glow-3)) !important;
+    background-size: 200% 100% !important;
+    box-shadow: 0 0 10px var(--glow-strong), 0 0 20px var(--glow-soft);
+    animation: glow-slide 3s linear infinite;
+}
+
+/* Dans Contact (fond marron), le trait est blanc */
+#contact .section-title h2::after {
+    background: linear-gradient(90deg, #fff, var(--glow-1), #fff) !important;
+    background-size: 200% 100% !important;
+}
+
+@keyframes glow-slide {
+    to { background-position: 200% 0; }
+}
+
+
+/* ---------- 10. FRISE DES ÉTUDES ---------- */
+
+/* La ligne verticale brille */
+.timeline::before {
+    box-shadow: 0 0 8px var(--glow-strong), 0 0 16px var(--glow-soft);
+}
+
+/* Les points clignotent doucement */
+.timeline-dot {
+    border-color: var(--glow-2);
+    animation: glow-dot 2.5s ease-in-out infinite;
+}
+
+@keyframes glow-dot {
+    0%, 100% { box-shadow: 0 0 4px var(--glow-soft); }
+    50%      { box-shadow: 0 0 14px var(--glow-1), 0 0 26px var(--glow-strong); }
+}
+
+
+/* ---------- 11. ÉTIQUETTES (HTML, Python...) ---------- */
+
+.skill-tag,
+.projet-tech span,
+.badge {
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.skill-tag:hover,
+.projet-tech span:hover,
+.badge:hover {
+    box-shadow: 0 0 0 1px var(--glow-2), 0 0 12px var(--glow-soft);
+    transform: translateY(-2px);
+}
+
+
+/* ---------- 12. RÉSEAUX SOCIAUX (Contact) ---------- */
+
+.social-link:hover {
+    box-shadow: 0 0 15px #fff, 0 0 30px var(--glow-1);
+}
+
+
+/* ---------- Si la personne a désactivé les animations sur son ordi ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+
+/* ---------- Étiquette "Hébergé en local" (projet Site Statistique) ---------- */
+/* Ressemble au bouton des autres projets, mais on ne peut pas cliquer dessus */
+.projet-local {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 30px;
+    border: 2px dashed var(--secondary);  /* bord en pointillés = pas un lien */
+    border-radius: 30px;
+    color: var(--primary);
+    font-weight: 600;
+    background: var(--light);
+    cursor: default;
 }
