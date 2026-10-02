@@ -1,9 +1,3 @@
-// ==========================================
-// PORTFOLIO BETUL ARTI - JAVASCRIPT
-// Fichier : style.js
-// Description : Gestion des animations et interactions
-// ==========================================
-
 // Attendre que tout le HTML soit chargé avant d'exécuter le code
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -160,6 +154,33 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.remove('glow-spot');
         });
     });
+
+    // ==========================================
+    // FORMATION : LES CARTES ARRIVENT UNE FOIS DE GAUCHE, UNE FOIS DE DROITE
+    // ==========================================
+    // Les cartes de gauche (1re, 3e, 5e...) glissent depuis la gauche,
+    // celles de droite (2e, 4e, 6e...) glissent depuis la droite.
+    // Le style de l'animation est dans style.css (.slide-left, .slide-right, .slide-in)
+    const cartesFormation = document.querySelectorAll('#etudes .timeline-item .timeline-content');
+    const animationsCoupees = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!animationsCoupees && 'IntersectionObserver' in window) {
+        // Quand une carte apparaît à l'écran, on la fait glisser à sa place
+        const observerFormation = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('slide-in');
+                    observerFormation.unobserve(entry.target); // une seule fois
+                }
+            });
+        }, { threshold: 0.2 });
+
+        cartesFormation.forEach((carte, numero) => {
+            // numero = 0, 1, 2... : pair = à gauche, impair = à droite
+            carte.classList.add(numero % 2 === 0 ? 'slide-left' : 'slide-right');
+            observerFormation.observe(carte);
+        });
+    }
 
     // Message de confirmation
     console.log('✅ Portfolio chargé!');
