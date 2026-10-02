@@ -1,7 +1,3 @@
-/* ==========================================
-   EFFET BULLES + TRANSITION PENCHÉE
-   ========================================== */
-
 /* Bulles animées en fond */
 .bubbles-bg {
     position: fixed;
@@ -2850,4 +2846,110 @@ nav {
     font-weight: 600;
     background: var(--light);
     cursor: default;
+}
+/* ==========================================
+   PROJET : APPLICATION IA D'APPRENTISSAGE DE L'ANGLAIS
+   ========================================== */
+.projet-ia {
+    margin-top: 2rem;                     /* Espace avec la carte du dessus */
+}
+
+/* Deux colonnes : fonctionnalités / technique (une seule sur téléphone) */
+.projet-ia-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+    text-align: left;                     /* Les listes se lisent mieux alignées à gauche */
+}
+
+.projet-ia-block {
+    background: var(--light);
+    border-radius: 12px;
+    padding: 1.2rem 1.4rem;
+}
+
+.projet-ia-block h4,
+.projet-ia-next h4 {
+    color: var(--primary);
+    font-size: 1rem;
+    margin: 0 0 0.6rem;
+}
+
+.projet-ia-block h4:not(:first-child) {
+    margin-top: 1rem;                     /* Espace avant le titre "Sécurité" */
+}
+
+.projet-ia-block ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.projet-ia-block li {
+    position: relative;
+    padding-left: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.projet-ia-block li::before {
+    content: '✓';                         /* Même coche que les sections Stages et Engagements */
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+    font-weight: bold;
+}
+
+.projet-ia-block code {
+    background: white;
+    padding: 0 0.3rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+/* Encadré "Prochaines étapes" */
+.projet-ia-next {
+    background: white;
+    border-left: 4px solid var(--accent);
+    border-radius: 12px;
+    padding: 1rem 1.4rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+.projet-ia-next p {
+    margin: 0;
+    font-size: 0.92rem;
+}
+
+/* Liste dans l'encadré "Prochaines étapes" (même coche que les autres listes) */
+.projet-ia-next ul { list-style: none; padding-left: 0; margin: 0; }
+.projet-ia-next li { position: relative; padding-left: 1.4rem; margin-bottom: 0.5rem; color: var(--text-light); font-size: 0.92rem; line-height: 1.55; }
+.projet-ia-next li:last-child { margin-bottom: 0; }
+.projet-ia-next li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+
+/* Liste "Sécurité à venir" : flèche dorée au lieu de la coche */
+.projet-ia-block ul.a-venir li::before { content: '→'; color: var(--accent); }
+
+/* ==========================================
+   FORMATION : CARTES QUI GLISSENT DE GAUCHE ET DE DROITE
+   (les classes sont ajoutées par script.js)
+   ========================================== */
+.timeline-content.slide-left,
+.timeline-content.slide-right {
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.timeline-content.slide-left  { transform: translateX(-120px); }  /* part de la gauche */
+.timeline-content.slide-right { transform: translateX(120px); }   /* part de la droite */
+
+/* Quand la carte arrive à l'écran : elle revient à sa place */
+.timeline-content.slide-in {
+    opacity: 1;
+    transform: translateX(0);
 }
